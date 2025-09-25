@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Barangay OACMS{% endblock %}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'pages/css/style.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="logo">BOACMS</div>
+            <div class="appbar">
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/appointments">APPOINTMENTS</a></li>
+                    <li><a href="/certifications">CERTIFICATIONS</a></li>
+                </ul>
+            </div>
+            <div class="auth">
+                <ul>
+                    <li class="login"><a href="#">LOGIN</a></li>
+                    <li class="register"><a href="#">REGISTER</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+
+            <div class="content-block">
+
+            {% block content %}
+                
+                <!-- BLOCK CONTENT -->
+
+            {% endblock %}
+
+            </div>
+
+        </div>
+    </body>
+</html>
