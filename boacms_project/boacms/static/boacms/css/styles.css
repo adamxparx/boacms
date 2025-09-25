@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.container {
+    padding: 50px 20px 20px 20px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    width: fit-content;
+    align-self: center;
+    margin-left: 20px;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.appbar ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    padding: 2px 5px;
+}
+
+li:hover {
+    transform: translateY(-10%);
+}
+
+.auth ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.content {
+    overflow-y: auto;
+    text-align: center;
+    align-content: center;
+    justify-items: center;
+    font-size: 40px;
+    height: auto;
+}
+
+/* Login Page */
+.form-login {
+    box-shadow: 0 0 20px gray;
+    border-radius: 10px;
+    padding: 30px 70px 50px 70px;
+    background-color: whitesmoke;
+}
+
+.form-group label {
+    font-size: 15px;
+    display: block;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.form-group input {
+    font-size: 20px;
+    padding: 10px;
+    width: 400px;
+}
+
+.form-action {
+    margin-top: 40px;
+    display: flex;
+}
+
+.form-action button {
+    border: none;
+    background-color: gray;
+    color: white;
+    width: 100%;
+    padding: 15px 0px;
+}
+
+.title-login {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.error-message {
+    font-size: 15px;
+    color: red;
+    text-align: left;
+}
