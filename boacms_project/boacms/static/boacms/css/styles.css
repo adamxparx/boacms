@@ -36,16 +36,25 @@ a {
     padding: 2px 5px;
 }
 
-li:hover {
+li:hover, .logout:hover {
     transform: translateY(-10%);
 }
 
-.auth ul {
+.auth ul{
     display: flex;
     list-style: none;
     gap: 40px;
     margin-right: 20px;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.logout {
+    border: none;
+    background-color: none;
+    font-size: 15px;
+    margin-right: 20px;
+    cursor: pointer;
 }
 
 .content {

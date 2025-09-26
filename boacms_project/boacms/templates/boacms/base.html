@@ -9,19 +9,26 @@
     <body>
         <div class="container">
             <div class="logo">BOACMS</div>
-            <div class="appbar">
-                <ul>
-                    <li><a href="/">HOME</a></li>
-                    <li><a href="/appointments">APPOINTMENTS</a></li>
-                    <li><a href="/certifications">CERTIFICATIONS</a></li>
-                </ul>
-            </div>
+            {% if user.is_authenticated %}
+                <div class="appbar">
+                    <ul>
+                        <li><a href="{% url 'dashboard' %}">HOME</a></li>
+                        <li><a href="/appointments">APPOINTMENTS</a></li>
+                        <li><a href="/certifications">CERTIFICATIONS</a></li>
+                    </ul>
+                </div>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="logout" value="Logout">
+                </form>
+            {% else %}
             <div class="auth">
                 <ul>
-                    <li class="login"><a href="#">LOGIN</a></li>
+                    <li class="login"><a href="{% url 'login' %}">LOGIN</a></li>
                     <li class="register"><a href="#">REGISTER</a></li>
                 </ul>
             </div>
+            {% endif %}
         </div>
         <div class="content">
 
