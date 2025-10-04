@@ -24,6 +24,10 @@ body {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+.logo:hover {
+    cursor: pointer;
+}
+
 .appbar ul {
     display: flex;
     list-style: none;
