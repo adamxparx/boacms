@@ -78,6 +78,16 @@ li:hover, .logout:hover {
     background-color: whitesmoke;
 }
 
+.form-group-container {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    text-align: left;
+    font-size: 15px;
+}
+
 .form-group label {
     font-size: 15px;
     display: block;
@@ -113,4 +123,9 @@ li:hover, .logout:hover {
     font-size: 15px;
     color: red;
     text-align: left;
+}
+
+// Forms.py
+.password-eror {
+    font-size: small;
 }

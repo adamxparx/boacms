@@ -4,7 +4,7 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="form-login">
+<div class="form-registration">
     <p class="title-login">Login</p>
     <form method="post" action="{% url 'login' %}">
 
@@ -12,7 +12,7 @@
 
         <div class="form-group">
 
-            <label class="username_label" for="id_username">Username</label>
+            <label class="email_label" for="id_email">Email</label>
             {{ form.username }} 
 
         </div>
