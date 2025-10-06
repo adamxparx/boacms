@@ -5,7 +5,12 @@
 
 {% block content %}
 <div class="form-registration">
-    <p class="title-login">Login</p>
+
+        {% for message in messages %}
+            <p class="messages">{{ message }}</p>
+        {% endfor %}
+
+    <p class="form-title">Login</p>
     <form method="post" action="{% url 'login' %}">
 
         {% csrf_token %} 

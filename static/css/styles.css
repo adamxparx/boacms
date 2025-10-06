@@ -107,14 +107,19 @@ li:hover, .logout:hover {
 }
 
 .form-action button {
-    border: none;
-    background-color: gray;
     color: white;
+    background-color: #050;
+    border: none;
     width: 100%;
-    padding: 15px 0px;
+    height: 40px;
 }
 
-.title-login {
+.form-action button:hover {
+    cursor: pointer;
+    background-color: #565;
+}
+
+.form-title {
     font-size: 50px;
     font-weight: bold;
 }
