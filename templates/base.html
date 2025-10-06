@@ -1,29 +1,39 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Barangay OACMS{% endblock %}</title>
-        {% load static %}
         <link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}">
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     </head>
     <body>
         <div class="container">
+            <div class="logo"><a href="{% url 'index' %}">BOACMS</a></div>
             {% if user.is_authenticated %}
-            <div class="logo"><a href="{% url 'dashboard' %}">BOACMS</a></div>
                 <div class="appbar">
                     <ul>
                         <li><a href="{% url 'dashboard' %}">HOME</a></li>
-                        <li><a href="/appointments">APPOINTMENTS</a></li>
-                        <li><a href="/certifications">CERTIFICATIONS</a></li>
+                        <li><a href="#">APPOINTMENTS</a></li>
+                        <li><a href="#">CERTIFICATIONS</a></li>
                     </ul>
                 </div>
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
-                    <input type="submit" class="logout" value="Logout">
+                    <details class="profile-dropdown">
+                        <summary>
+                            <div>
+                                {{ user.first_name }} {{ user.last_name }}
+                            </div>
+                            <div>
+                                <img class="dropdown-icon" src="{% static 'images/dropdown.png' %}">
+                            </div>
+                        </summary>
+                        <button type="submit" class="logout">Logout</button>
+                    </select>
                 </form>
             {% else %}
-            <div class="logo"><a href="{% url 'index' %}">BOACMS</a></div>
             <div class="auth">
                 <ul>
                     <li class="login"><a href="{% url 'login' %}">LOGIN</a></li>
