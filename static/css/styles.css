@@ -21,7 +21,11 @@ body {
     margin-left: 20px;
     font-size: 50px;
     font-weight: bold;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.logo a {
+    color: darkgreen;
 }
 
 .logo:hover {
@@ -40,7 +44,7 @@ a {
     padding: 2px 5px;
 }
 
-li:hover, .logout:hover {
+li:hover {
     transform: translateY(-10%);
 }
 
@@ -50,14 +54,6 @@ li:hover, .logout:hover {
     gap: 40px;
     margin-right: 20px;
     font-weight: bold;
-    cursor: pointer;
-}
-
-.logout {
-    border: none;
-    background-color: none;
-    font-size: 15px;
-    margin-right: 20px;
     cursor: pointer;
 }
 
@@ -130,7 +126,40 @@ li:hover, .logout:hover {
     text-align: left;
 }
 
-// Forms.py
-.password-eror {
-    font-size: small;
+/* Dashboard */
+.profile-dropdown {
+    margin: 20px 40px 0 0;
+}
+
+.profile-dropdown summary {
+    list-style: none;
+    font-weight: bold;
+    display: flex;
+    gap: 10px;
+    width: 200px;
+    justify-content: center;
+    color: darkgreen;
+}
+
+.profile-dropdown summary:hover {
+    cursor: pointer;
+}
+
+.dropdown-icon {
+    width: 18px;
+    color: darkgreen;
+}
+
+.logout {
+    width: 200px;
+    padding: 10px 20px;
+    background-color: white;
+    text-align: left;
+    position: absolute;
+    border: none;
+}
+
+.logout:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px 1px #555;
 }
