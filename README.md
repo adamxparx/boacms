@@ -49,3 +49,15 @@ Setup & run instructions
 
 7. Run the server
 	python manage.py runserver
+
+
+Team members (Name, Role, CIT-U Email)
+
+Inoc, Nicole John P.		Product Owner  		nicolejohn.inoc@cit.edu 
+Lapis, Andrae Louise U.		Business Analyst 	andraelouise.lapis@cit.edu
+Lawas, Berchard Lawrence D.	Business Analyst 	berchardlawrence.lawas@cit.edu
+Leonardo, Natasha Kate A.	Scrum Master 		natashakate.leonardo@cit.edu
+
+Esparcia, Adam Cloyd H.		Lead Developer 		adamcloyd.esparcia@cit.edu
+Esparcia, Earl Gerald R.	Developer 		earlgerald.esparcia@cit.edu
+Estrada, Julianna Carmel 	Developer		juliannacarmel.estrada@cit.edu
