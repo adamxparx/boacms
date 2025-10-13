@@ -3,6 +3,12 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.utils import timezone
 from datetime import timedelta
 import random
+from django.core.validators import RegexValidator
+
+phone_regex = RegexValidator(
+    regex=r'^\d{10,15}$',
+    message="Phone number must be between 10 and 15 digits."
+)
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -32,7 +38,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=50, blank=True)
     middle_name = models.CharField(max_length=50, blank=True, null=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    phone_number = models.CharField(max_length=15, unique=True, null=True, blank=True)
+    phone_number = models.CharField(max_length=15, validators=[phone_regex], unique=True, null=True, blank=True)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
