@@ -17,7 +17,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     last_name = forms.CharField(
         required=True,
-        label='First Name',
+        label='Last Name',
         widget=forms.TextInput(attrs={'placeholder': 'Enter your last name'})
     )
 
@@ -48,7 +48,7 @@ class CustomUserCreationForm(UserCreationForm):
     password2 = forms.CharField(
         required=True,
         label='Confirm Password',
-        widget=forms.PasswordInput(attrs={'placeholder': 'Enter your password'}),
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirm your password'}),
     )
 
     class Meta:
@@ -60,8 +60,6 @@ class CustomUserCreationForm(UserCreationForm):
             'date_of_birth',
             'email',
             'phone_number',
-            'password1',
-            'password2',
         ]
 
     def clean_email(self):
@@ -75,3 +73,10 @@ class CustomUserCreationForm(UserCreationForm):
         if phone_number and CustomUser.objects.filter(phone_number=phone_number).exists():
             raise forms.ValidationError("This phone number is already in use.")
         return phone_number
+    
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.role = 'resident'
+        if commit:
+            user.save()
+        return user
