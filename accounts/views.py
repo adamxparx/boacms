@@ -23,7 +23,16 @@ def register(request):
 
 @login_required
 def dashboard(request):
+    user = request.user
+
+    if user.role == 'barangay_staff':
+        return redirect('staff_dashboard')
+
     context = {
-        'user': request.user,
+        'user': user,
     }
+
     return render(request, 'accounts/dashboard.html', context)
+
+def staff_dashboard(request):
+    return render(request, 'accounts/staff_dashboard.html')

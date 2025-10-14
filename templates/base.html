@@ -23,9 +23,15 @@
                     {% csrf_token %}
                     <details class="profile-dropdown">
                         <summary>
-                            <div>
-                                {{ user.first_name }} {{ user.last_name }}
-                            </div>
+                            {% if user.role == 'resident' %}
+                                <div>
+                                    {{ user.first_name }} {{ user.last_name }}
+                                </div>
+                            {% else %}
+                                <div>
+                                    Barangay Office
+                                </div>
+                            {% endif %}
                             <div>
                                 <img class="dropdown-icon" src="{% static 'images/dropdown.png' %}">
                             </div>
