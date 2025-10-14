@@ -34,7 +34,7 @@
 9. Create .env file to store environment-specific variables and paste the following content
 
 	`#Supabase credentials`  
-	`DB_ENGINE=django.db.backends.postgresql_psycopg2`  
+	`DB_ENGINE=django.db.backends.postgresql`  
 	`DB_NAME=postgres`  
 	`DB_USER=postgres.syqrwazhtflzztakolkj`  
 	`DB_PASSWORD=R@nd0mP@$$w0rdNg@n!`  
