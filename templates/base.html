@@ -10,7 +10,9 @@
     </head>
     <body>
         <div class="container">
-            <div class="logo"><a href="{% url 'index' %}">BOACMS</a></div>
+            <div class="logo"><a href="{% url 'index' %}">
+                <img src="{% static 'images/logo.png' %}" />
+            </a></div>
             {% if user.is_authenticated %}
                 <div class="appbar">
                     <ul>
