@@ -36,3 +36,6 @@ def dashboard(request):
 
 def staff_dashboard(request):
     return render(request, 'accounts/staff_dashboard.html')
+
+def certification(request):
+    return render(request, 'accounts/certification.html')
