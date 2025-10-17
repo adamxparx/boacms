@@ -1,0 +1,112 @@
+/* --- Certification.html - Appointment Form --- */
+.certification-outer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+.certification-box {
+  background: #e0e0e0;
+  width: 92%;
+  max-width: 920px;
+  padding: 36px;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 4px;
+}
+
+.cert-title {
+  margin: 0 0 18px 0;
+  font-weight: bold;
+  color: #111;
+  font-size: 20px;
+}
+
+.cert-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.row-top .field.first,
+.row-top .field.second {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.row-mid .field.email {
+  flex: 1.6 1 0;
+  min-width: 0;
+}
+.row-mid .field.date,
+.row-mid .field.time {
+  flex: 0.7 1 0;
+  min-width: 0;
+}
+
+.row-full .field.full {
+  width: 100%;
+  min-width: 0;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 20px;
+  color: #111;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 18px;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  background: #fff;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: rgba(0,128,0,0.6);
+  box-shadow: 0 0 6px rgba(0,128,0,0.12);
+}
+
+.field textarea {
+  height: 110px;
+  resize: none;
+}
+
+.form-action {
+  position: right;
+  right: 36px;
+  bottom: 14px;
+}
+
+.form-action button {
+  background: #7fb67f;
+  color: #000;
+  border: none;
+  padding: 8px 28px;
+  border-radius: 4px;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.form-action button:hover {
+  background: #6ca46c;
+}
