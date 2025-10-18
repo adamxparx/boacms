@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}Barangay OACMS{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'appointments/css/certification.css' %}">
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <link rel="icon" type="images/png" href="{% static 'images/logo.png' %}">
     </head>
@@ -18,8 +19,11 @@
                 <div class="appbar">
                     <ul>
                         <li><a href="{% url 'dashboard' %}">HOME</a></li>
+                        {% if user.role == 'resident' %}
+                        <li><a href="{% url 'barangay_clearance' %}">CERTIFICATIONS</a></li>
+                        {% else %}
                         <li><a href="#">APPOINTMENTS</a></li>
-                        <li><a href="#">CERTIFICATIONS</a></li>
+                        {% endif %}
                     </ul>
                 </div>
                 <form action="{% url 'logout' %}" method="post">
@@ -51,17 +55,14 @@
             </div>
             {% endif %}
         </div>
-        <div class="content">
 
-            <div class="content-block">
+        <div class="content">
 
             {% block content %}
                 
                 <!-- BLOCK CONTENT -->
 
             {% endblock %}
-
-            </div>
 
         </div>
     </body>

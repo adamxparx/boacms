@@ -1,0 +1,18 @@
+{% extends 'appointments/certification.html' %}
+{% load static %}
+
+{% block title %}Certification | Solo Parent Certificate{% endblock %}
+
+{% block cert_content %}
+
+    <h5>Solo Parent Certificate</h5>
+    <form class="cert" method="post">
+        <input type="text" placeholder="Full Name" />
+        <input type="text" placeholder="Date Of Birth" />
+        <input type="text" placeholder="Oresent Address" />
+        <input type="text" placeholder="Contact Number" />
+        <input type="text" placeholder="Purpose" />
+        <button>Book</button>
+    </form>
+
+{% endblock %}
