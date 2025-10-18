@@ -3,58 +3,19 @@
 
 {% block title %}Certification Request Form | Barangay OACMS{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'appointments/css/certification.css' %}">
-{% endblock %}
-
 {% block content %}
-<div class="certification-outer">
-  <div class="certification-box">
-    <h2 class="cert-title">Appointment Form</h2>
 
-    <form method="POST" class="cert-form">
-      {% csrf_token %}
+<div class="certification-block">
+  <div class="options">
+    <a href="{% url 'barangay_clearance' %}"><button>Barangay Clearance</button></a>
+    <a href="{% url 'indigency_certificate' %}"><button>Certificate of Indigency</button></a>
+    <a href="{% url 'comm_tax_cert' %}"><button>Community Tax Certificate (Cedula)</button></a>
+    <a href="{% url 'solo_parent_cert' %}"><button>Solo Parent Certificate</button></a>
+  </div>
 
-      <div class="row row-top">
-        <div class="field first">
-          <label for="first_name">First Name</label>
-          <input id="first_name" name="first_name" type="text" required>
-        </div>
-
-        <div class="field second">
-          <label for="last_name">Last Name</label>
-          <input id="last_name" name="last_name" type="text" required>
-        </div>
-      </div>
-
-      <div class="row row-mid">
-        <div class="field email">
-          <label for="email">E-mail</label>
-          <input id="email" name="email" type="email" required>
-        </div>
-
-        <div class="field date">
-          <label for="date">Date</label>
-          <input id="date" name="date" type="date" required>
-        </div>
-
-        <div class="field time">
-          <label for="time">Time</label>
-          <input id="time" name="time" type="time" required>
-        </div>
-      </div>
-
-      <div class="row row-full">
-        <div class="field full">
-          <label for="purpose">Purpose of Appointment</label>
-          <textarea id="purpose" name="purpose" rows="3" required></textarea>
-        </div>
-      </div>
-
-      <div class="form-action">
-        <button type="submit">Submit</button>
-      </div>
-    </form>
+  <div class="cert_content">
+    {% block cert_content %}<h2>Book an appointment now.</h2>{% endblock %}
   </div>
 </div>
+
 {% endblock %}

@@ -27,6 +27,13 @@ body {
     cursor: pointer;
 }
 
+.appbar {
+    margin-top: 20px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+}
+
 .appbar ul {
     display: flex;
     list-style: none;
@@ -54,6 +61,13 @@ li:hover {
     margin-right: 20px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.cert-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
 }
 
 .content {
