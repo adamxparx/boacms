@@ -5,14 +5,18 @@
 
 {% block cert_content %}
 
-    <h5>Certificate of Indigency</h5>
-    <form class="cert" method="post">
-        <input type="text" placeholder="Full Name" />
-        <input type="text" placeholder="Date Of Birth" />
-        <input type="text" placeholder="Oresent Address" />
-        <input type="text" placeholder="Contact Number" />
-        <input type="text" placeholder="Purpose" />
-        <button>Book</button>
-    </form>
+    <div class="cert_title">
+        <h5>Certificate of Indigency</h5>
+    </div>
+    <div class="cert">
+        <form method="post">
+            <input type="text" placeholder="Full Name" />
+            <input type="text" placeholder="Date Of Birth" />
+            <input type="text" placeholder="Oresent Address" />
+            <input type="text" placeholder="Contact Number" />
+            <input type="text" placeholder="Purpose" />
+            <button>Book</button>
+        </form>
+    </div>
 
 {% endblock %}
