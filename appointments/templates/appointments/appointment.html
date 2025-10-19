@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Appointments{% endblock %}
+
+{% block content %}
+
+{% if appointments %}
+    <div class="user_appointments">
+        <div class="appointment_title">
+            <div>Certificate Type</div>
+            <div>Appointment Date</div>
+            <div>Appointment Time</div>
+            <div>Purpose</div>
+            <div>Status</div>
+        </div>
+        {% for appointment in appointments %}
+            <div class="appointment_content">
+                <div>{{ appointment.certificate_type.name }}</div>
+                <div>{{ appointment.appointment_date }}</div>
+                <div>{{ appointment.appointment_time }}</div>
+                <div>{{ appointment.purpose }}</div>
+                {% if appointment.is_completed %}
+                    <div class="status">Completed</div>
+                {% else %}
+                    <div class="status">Pending</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div>You have no upcoming appointments.</div>
+{% endif %}
+
+{% endblock %}
+

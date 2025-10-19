@@ -76,3 +76,44 @@
 .cert button:hover {
   cursor: pointer;
 }
+
+.user_appointments {
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  justify-items: center;
+  height: 100%;
+}
+
+.user_appointments div {
+  margin: 5px;
+  color: white;
+  display: flex;
+  width: 1000px;
+  gap: 10px;
+  justify-content: space-evenly;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.appointment_title {
+  font-weight: bold;
+  background-color: darkgreen;
+}
+
+.appointment_title div {
+  border: none;
+}
+
+.appointment_content {
+  background-color: whitesmoke;
+}
+
+.appointment_content div {
+  align-items: center;
+  color: black;
+}
+
+.status {
+  border: 1px solid black;
+}

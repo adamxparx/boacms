@@ -21,7 +21,7 @@ def barangay_clearance(request):
             clearance.appointment = appointment
             clearance.save()
 
-            return redirect('indigency_certificate')
+            return redirect('appointments')
         
     else:
         appointment_form = AppointmentForm()
@@ -42,3 +42,23 @@ def comm_tax_certificate(request):
 
 def solo_parent_certificate(request):
     return render(request, 'appointments/solo_parent_certificate.html')
+
+@login_required
+def appointments(request):
+    user_appointments = Appointment.objects.filter(user=request.user).order_by('-appointment_date', '-appointment_time')
+
+    context = {
+        'appointments': user_appointments
+    }
+
+    return render(request, 'appointments/appointment.html', context)
+
+@login_required
+def staff_appointments(request):
+    all_appointments = Appointment.objects.all().order_by('-appointment_date', '-appointment_time')
+
+    context = {
+        'appointments': all_appointments
+    }
+
+    return render(request, 'appointments/staff_appointment.html', context)
