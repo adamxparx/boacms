@@ -1,5 +1,5 @@
 from django import forms
-from .models import Appointment, BarangayClearance
+from .models import Appointment, BarangayClearance, CertificateOfIndigency, CommunityTaxCertificate
 
 class AppointmentForm(forms.ModelForm):
     class Meta:
@@ -14,3 +14,10 @@ class BarangayClearanceForm(forms.ModelForm):
     class Meta:
         model = BarangayClearance
         fields = ['civil_status', 'citizenship']
+
+class CertificateOfIndigencyForm(forms.ModelForm):
+    class Meta:
+        model = CertificateOfIndigency
+        fields = ['present_address', 'contact_number']
+
+

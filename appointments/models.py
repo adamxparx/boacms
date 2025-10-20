@@ -36,3 +36,11 @@ class BarangayClearance(models.Model):
 
     def __str__(self):
         return f"Clearance for {self.appointment.user.get_full_name()}"
+    
+class CertificateOfIndigency(models.Model):
+    appointment = models.OneToOneField(Appointment, on_delete=models.CASCADE)
+    present_address = models.CharField(max_length=255)
+    contact_number = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"Certificate of Indigency for {self.full_name}"
