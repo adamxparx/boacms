@@ -20,4 +20,9 @@ class CertificateOfIndigencyForm(forms.ModelForm):
         model = CertificateOfIndigency
         fields = ['present_address', 'contact_number']
 
+class CommunityTaxCertificateForm(forms.ModelForm):
+    class Meta: 
+        model = CommunityTaxCertificate
+        fields = ['address', 'sex', 'civil_status', 'citizenship', 'occupation_or_business']
+
 

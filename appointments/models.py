@@ -44,3 +44,17 @@ class CertificateOfIndigency(models.Model):
 
     def __str__(self):
         return f"Certificate of Indigency for {self.full_name}"
+    
+class CommunityTaxCertificate(models.Model):
+    SEX_CHOICES = (('Male', 'Male'), ('Female', 'Female'))
+    CIVIL_STATUS_CHOICES = (('Single', 'Single'), ('Married', 'Married'), ('Widowed', 'Widowed'), ('Separated', 'Separated'))
+
+    appointment = models.OneToOneField(Appointment, on_delete=models.CASCADE, primary_key=True)
+    address = models.CharField(max_length=255)
+    sex = models.CharField(max_length=10, choices=SEX_CHOICES)
+    civil_status = models.CharField(max_length=20, choices=CIVIL_STATUS_CHOICES)
+    citizenship = models.CharField(max_length=50)
+    occupation_or_business = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"Community Tax Certificate for {self.full_name}"
