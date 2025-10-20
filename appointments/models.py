@@ -49,7 +49,7 @@ class CommunityTaxCertificate(models.Model):
     SEX_CHOICES = (('Male', 'Male'), ('Female', 'Female'))
     CIVIL_STATUS_CHOICES = (('Single', 'Single'), ('Married', 'Married'), ('Widowed', 'Widowed'), ('Separated', 'Separated'))
 
-    appointment = models.OneToOneField(Appointment, on_delete=models.CASCADE, primary_key=True)
+    appointment = models.OneToOneField(Appointment, on_delete=models.CASCADE)
     address = models.CharField(max_length=255)
     sex = models.CharField(max_length=10, choices=SEX_CHOICES)
     civil_status = models.CharField(max_length=20, choices=CIVIL_STATUS_CHOICES)
@@ -58,3 +58,12 @@ class CommunityTaxCertificate(models.Model):
 
     def __str__(self):
         return f"Community Tax Certificate for {self.full_name}"
+    
+class SoloParentCertificate(models.Model):
+    appointment = models.OneToOneField(Appointment, on_delete=models.CASCADE)
+    present_address = models.CharField(max_length=255)
+    contact_number = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"Solo Parent Certificate for {self.full_name}"
+    

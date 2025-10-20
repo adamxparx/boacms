@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import AppointmentForm, BarangayClearanceForm, CertificateOfIndigencyForm, CommunityTaxCertificateForm
+from .forms import AppointmentForm, BarangayClearanceForm, CertificateOfIndigencyForm, CommunityTaxCertificateForm, SoloParentCertificateForm
 from .models import Appointment, CertificationType
 
 @login_required
@@ -96,8 +96,36 @@ def comm_tax_certificate(request):
 
     return render(request, 'appointments/comm_tax_certificate.html', context)
 
+@login_required
 def solo_parent_certificate(request):
-    return render(request, 'appointments/solo_parent_certificate.html')
+    if request.method == 'POST':
+        appointment_form = AppointmentForm(request.POST)
+        clearance_form = SoloParentCertificateForm(request.POST)
+
+        if appointment_form.is_valid() and clearance_form.is_valid():
+            cert_type, created = CertificationType.objects.get_or_create(name="Solo Parent Certificate")
+
+            appointment = appointment_form.save(commit=False)
+            appointment.user = request.user
+            appointment.certificate_type = cert_type
+            appointment.save()
+
+            clearance = clearance_form.save(commit=False)
+            clearance.appointment = appointment
+            clearance.save()
+
+            return redirect('appointments')
+        
+    else:
+        appointment_form = AppointmentForm()
+        clearance_form = SoloParentCertificateForm()
+        
+        context = {
+            'appointment_form': appointment_form,
+            'clearance_form': clearance_form,
+        }
+
+    return render(request, 'appointments/solo_parent_certificate.html', context)
 
 @login_required
 def appointments(request):
