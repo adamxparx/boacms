@@ -25,7 +25,7 @@
 	`python -m venv venv`  
 
 5. Activate the virtual environment  
-   	Windows: `venv\Scripts\activate`	
+   	Windows: `venv\Scripts\activate`  
 	MacOS/Linux: `source venv/bin/activate` 
 
 7. Install the required packages  
@@ -33,21 +33,13 @@
 
 9. Create .env file to store environment-specific variables and paste the following content
 
-	`#Supabase credentials`  
+	`# Supabase credentials`  
 	`DB_ENGINE=django.db.backends.postgresql`  
 	`DB_NAME=postgres`  
 	`DB_USER=postgres.syqrwazhtflzztakolkj`  
 	`DB_PASSWORD=R@nd0mP@$$w0rdNg@n!`  
 	`DB_HOST=aws-1-ap-southeast-1.pooler.supabase.com`  
-	`DB_PORT=5432`  
-  
-   	`#Email credentials`  
-	`EMAIL_HOST=smtp.gmail.com`  
-	`EMAIL_PORT=587`   
-	`EMAIL_USE_TLS=True`  
-	`EMAIL_HOST_USER=cloydadam.esparcia@gmail.com`  
-	`EMAIL_HOST_PASSWORD=ncbdqkhsktmzddvx  
-`
+	`DB_PORT=5432`   
 11. Run the server  
 	`python manage.py runserver`
 
