@@ -7,12 +7,37 @@
 
     <h5>Solo Parent Certificate</h5>
     <form class="cert" method="post">
-        <input type="text" placeholder="Full Name" />
-        <input type="text" placeholder="Date Of Birth" />
-        <input type="text" placeholder="Oresent Address" />
-        <input type="text" placeholder="Contact Number" />
-        <input type="text" placeholder="Purpose" />
-        <button>Book</button>
+        {% csrf_token %}
+        <div class="appointment">
+            <div class="title">Appointment Details</div>
+            <label for="{{ appointment_form.appointment_date.id_for_label }}">Appointment Date</label>
+            <div>
+                {{ appointment_form.appointment_date }}
+            </div>
+            <label for="{{ appointment_form.appointment_time.id_for_label }}">Appointment Time</label>
+            <div>
+                {{ appointment_form.appointment_time }}
+            </div>
+            <label for="{{ appointment_form.purpose.id_for_label }}">Purpose</label>
+            <div>
+                {{ appointment_form.purpose }}
+            </div>
+            <div class="help_text">
+                {{ appointment_form.purpose.help_text }}
+            </div>
+        </div>
+        <div class="clearance">
+            <div class="title">Personal Details</div>
+            <label for="{{ clearance_Form.present_address.id_for_label }}">Present Address</label>
+            <div>
+                {{ clearance_form.present_address }}
+            </div>
+            <label for="{{ clearance_Form.contact_number.id_for_label }}">Contact Number</label>
+            <div>
+                {{ clearance_form.contact_number }}
+            </div>
+        </div>
+        <button type="submit">Book</button>
     </form>
 
 {% endblock %}
