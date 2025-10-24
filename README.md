@@ -32,7 +32,14 @@
 	`pip install -r requirements.txt`  
 
 9. Create .env file to store environment-specific variables.
-	> _.env cannot be shared_
+    
+	`# Supabase credentials`  
+	`DB_ENGINE=django.db.backends.postgresql`  
+	`DB_NAME=postgres`  
+	`DB_USER=postgres.syqrwazhtflzztakolkj`  
+	`DB_PASSWORD=[YOUR_PASSWORD]`  
+	`DB_HOST=aws-1-ap-southeast-1.pooler.supabase.com`  
+	`DB_PORT=5432` 
   
 11. Run the server  
 	`python manage.py runserver`
