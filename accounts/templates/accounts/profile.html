@@ -1,0 +1,20 @@
+{% extends 'accounts/dashboard.html' %}
+{% load static %}
+
+{% block title %}{{ user.last_name }} | Profile{% endblock %}
+
+{% block content %}
+
+<form class="form-profile" method="post">
+    {% csrf_token %}
+    {% for message in messages %}
+    <div class="message">{{ message }}</div>
+    {% endfor %}
+    
+    <div><input name="{{ form.first_name.name }}" value="{{ form.first_name.value }}" required/></div>
+    <div><input name="{{ form.middle_name.name }}" value="{{ form.middle_name.value }}"/></div>
+    <div><input name="{{ form.last_name.name }}" value="{{ form.last_name.value }}" required/></div>
+    <button type="submit">Update</button>
+</form>
+
+{% endblock %}

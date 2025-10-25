@@ -2,6 +2,15 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 
+class CustomUserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = {
+            'first_name',
+            'middle_name',
+            'last_name',
+        }
+
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(
         required=True,

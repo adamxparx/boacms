@@ -80,18 +80,60 @@
     color: darkgreen;
 }
 
-.logout {
-    width: 200px;
+a {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-button {
+    position: absolute;
+}
+
+.dropdown-button button, .dropdown-button a div {
     padding: 10px 20px;
     background-color: white;
     text-align: left;
-    position: absolute;
+    border: none;
+    width: 200px;
+    font-size: 14px;
+}
+
+.dropdown-button a div {
+    width: 160px;
+}
+
+.dropdown-button button:hover, .dropdown-button a div:hover {
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 9.5px 19px;
+}
+
+.form-profile {
+    display: block;
+    min-width: 200px;
+}
+
+.form-profile input {
+    width: 250px;
+    padding: 10px 20px;
+}
+
+.form-profile button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: darkgreen;
+    color: white;
     border: none;
 }
 
-.logout:hover {
+.form-profile button:hover {
+    background-color: #3f6a3f;
     cursor: pointer;
-    box-shadow: 0 0 5px 1px #555;
+}
+
+.message {
+    color: darkgreen;
+    font-size: 14px;
 }
 
 
