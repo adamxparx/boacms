@@ -1,10 +1,10 @@
-{% extends "base.html" %} 
+{% extends "accounts/index.html" %} 
 {% load static %}
 
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="form-registration">
+<div class="form-login">
 
         {% for message in messages %}
             <p class="messages">{{ message }}</p>

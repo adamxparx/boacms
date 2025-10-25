@@ -1,6 +1,30 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home | Barangay Online Appointment & Certification Magement System{% endblock %}
+
+{% block appbar %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'appointments/css/certification.css' %}">
+{% endblock %}
+
+{% block user_logout %}
+
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <details class="profile-dropdown">
+            <summary>
+                {% block user %}{% endblock %}
+                <div>
+                    <img class="dropdown-icon" src="{% static 'images/dropdown.png' %}">
+                </div>
+            </summary>
+            <button type="submit" class="logout">Logout</button>
+        </select>
+    </form>
+{% endblock %}
 
 {% block content %}
 

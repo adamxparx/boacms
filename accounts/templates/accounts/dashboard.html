@@ -1,7 +1,21 @@
-{% extends 'base.html' %}
+{% extends 'accounts/index.html' %}
 {% load static %}
 
 {% block title %}{{ user.last_name }} | Dashboard{% endblock %}
+
+{% block appbar %}
+    <ul>
+        <li><a href="{% url 'dashboard' %}">HOME</a></li>
+        <li><a href="{% url 'barangay_clearance' %}">CERTIFICATIONS</a></li>
+        <li><a href="{% url 'appointments' %}">APPOINTMENTS</a></li>
+    </ul>
+
+{% endblock %}
+
+{% block user %}
+<div>{{ user.first_name }} {{ user.last_name }}</div>
+{% endblock %}
+
 
 {% block content %}
 
