@@ -32,6 +32,7 @@
   display: block;
   justify-items: center;
   padding: 50px 0;
+  height: 100%;
 }
 
 .cert-title {

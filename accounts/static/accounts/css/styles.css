@@ -4,6 +4,95 @@
     text-align: center;
 }
 
+.form-group-container {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    text-align: left;
+    font-size: 15px;
+}
+
+.form-group label {
+    font-size: 15px;
+    display: block;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.form-group input {
+    font-size: 20px;
+    padding: 10px;
+    width: 400px;
+}
+
+.form-action {
+    margin-top: 40px;
+    display: flex;
+}
+
+.form-action button {
+    color: white;
+    background-color: #050;
+    border: none;
+    width: 100%;
+    height: 40px;
+}
+
+.form-action button:hover {
+    cursor: pointer;
+    background-color: #565;
+}
+
+.form-title {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.error-message {
+    font-size: 15px;
+    color: red;
+    text-align: left;
+}
+
+/* Dashboard */
+.profile-dropdown {
+    margin-top: 35px;
+}
+
+.profile-dropdown summary {
+    list-style: none;
+    font-weight: bold;
+    display: flex;
+    gap: 10px;
+    width: fit-content;
+    justify-content: center;
+    color: darkgreen;
+}
+
+.profile-dropdown summary:hover {
+    cursor: pointer;
+}
+
+.dropdown-icon {
+    width: 18px;
+    color: darkgreen;
+}
+
+.logout {
+    width: 200px;
+    padding: 10px 20px;
+    background-color: white;
+    text-align: left;
+    position: absolute;
+    border: none;
+}
+
+.logout:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px 1px #555;
+}
 
 
 

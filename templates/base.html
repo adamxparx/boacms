@@ -5,56 +5,32 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Barangay OACMS{% endblock %}</title>
-        <link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}">
-        <link rel="stylesheet" href="{% static 'appointments/css/certification.css' %}">
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <link rel="icon" type="images/png" href="{% static 'images/logo.png' %}">
+        {% block extra_css %}{% endblock %}
     </head>
     <body>
         <div class="container">
-            <div class="logo"><a href="{% url 'index' %}">
-                <img src="{% static 'images/logo.png' %}" />
-            </a></div>
-            {% if user.is_authenticated %}
+            <div class="logo-appbar">
+                <a href="{% url 'index' %}">
+                    <img src="{% static 'images/logo.png' %}" />
+                </a>
                 <div class="appbar">
+                    {% block appbar %}{% endblock %}
+                </div>
+            </div>    
+            <div>
+                {% if user.is_authenticated %}
+                    {% block user_logout %}{% endblock %}
+                {% else %}
+                <div class="auth">
                     <ul>
-                        <li><a href="{% url 'dashboard' %}">HOME</a></li>
-                        {% if user.role == 'resident' %}
-                        <li><a href="{% url 'barangay_clearance' %}">CERTIFICATIONS</a></li>
-                        <li><a href="{% url 'appointments' %}">APPOINTMENTS</a></li>
-                        {% else %}
-                        <li><a href="{% url 'staff_appointments' %}">APPOINTMENTS</a></li>
-                        {% endif %}
+                        <li class="login"><a href="{% url 'login' %}">LOGIN</a></li>
+                        <li class="register"><a href="{% url 'register' %}">REGISTER</a></li>
                     </ul>
                 </div>
-                <form action="{% url 'logout' %}" method="post">
-                    {% csrf_token %}
-                    <details class="profile-dropdown">
-                        <summary>
-                            {% if user.role == 'resident' %}
-                                <div>
-                                    {{ user.first_name }} {{ user.last_name }}
-                                </div>
-                            {% else %}
-                                <div>
-                                    Barangay Office
-                                </div>
-                            {% endif %}
-                            <div>
-                                <img class="dropdown-icon" src="{% static 'images/dropdown.png' %}">
-                            </div>
-                        </summary>
-                        <button type="submit" class="logout">Logout</button>
-                    </select>
-                </form>
-            {% else %}
-            <div class="auth">
-                <ul>
-                    <li class="login"><a href="{% url 'login' %}">LOGIN</a></li>
-                    <li class="register"><a href="{% url 'register' %}">REGISTER</a></li>
-                </ul>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
 
         <div class="content">

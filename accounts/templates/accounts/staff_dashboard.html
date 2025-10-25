@@ -1,7 +1,20 @@
-{% extends "base.html" %}
+{% extends "accounts/index.html" %}
 {% load static %}
 
 {% block title %}BOACMS | Barangay Office{% endblock %}
+
+{% block appbar %}
+
+    <ul>
+        <li><a href="{% url 'staff_dashboard' %}">HOME</a></li>
+        <li><a href="{% url 'staff_appointments' %}">APPOINTMENTS</a></li>
+    </ul>
+
+{% endblock %}
+
+{% block user %}
+<div>Barangay Office</div>
+{% endblock %}
 
 {% block content %}
     <div class="title-welcome">

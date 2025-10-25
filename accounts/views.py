@@ -43,7 +43,11 @@ def register(request):
             return redirect('login') 
     else:
         form = CustomUserCreationForm()
-    return render(request, 'accounts/register.html', {'form': form})
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/register.html', context)
 
 @login_required
 def dashboard(request):
