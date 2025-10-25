@@ -21,7 +21,10 @@
                     <img class="dropdown-icon" src="{% static 'images/dropdown.png' %}">
                 </div>
             </summary>
-            <button type="submit" class="logout">Logout</button>
+            <div class="dropdown-button">
+                <a href="{% url 'profile' %}"><div>Profile</div></a>
+                <button type="submit">Logout</button>
+            </div>
         </select>
     </form>
 {% endblock %}

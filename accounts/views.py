@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 from django.contrib import messages
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserUpdateForm
 
 def auth_check(user):
     if user.is_authenticated:
@@ -75,3 +75,22 @@ def staff_dashboard(request):
     if user.role == 'resident':
         return redirect('dashboard')
     return render(request, 'accounts/staff_dashboard.html')
+
+@login_required
+def profile(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = CustomUserUpdateForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'User updated.')
+
+    else:
+        form = CustomUserUpdateForm(instance=user)
+
+    context = {
+        'form': form,
+        'user': user,
+    }
+    return render(request, 'accounts/profile.html', context)
