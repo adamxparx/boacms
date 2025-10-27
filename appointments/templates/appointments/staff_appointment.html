@@ -22,11 +22,19 @@
                 <div>{{ appointment.appointment_date }}</div>
                 <div>{{ appointment.appointment_time }}</div>
                 <div>{{ appointment.purpose }}</div>
-                {% if appointment.is_completed %}
-                    <div class="status">Completed</div>
-                {% else %}
-                    <div class="status">Pending</div>
-                {% endif %}
+                <div class="status">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+                        <button name="is_completed" value="True" type="submit">
+                            {% if appointment.is_completed %}
+                            <p class="approved">Approved</p>
+                            {% else %}
+                            <p class="pending">Approve</p>
+                            {% endif %}
+                        </button>
+                    </form>
+                </div>
             </div>
         {% endfor %}
     </div>

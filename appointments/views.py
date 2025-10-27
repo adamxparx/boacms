@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import AppointmentForm, BarangayClearanceForm, CertificateOfIndigencyForm, CommunityTaxCertificateForm, SoloParentCertificateForm
 from .models import Appointment, CertificationType
+from django.contrib import messages
 
 @login_required
 def barangay_clearance(request):
@@ -141,8 +142,15 @@ def appointments(request):
 def staff_appointments(request):
     all_appointments = Appointment.objects.all().order_by('-appointment_date', '-appointment_time')
 
+    if request.method == "POST":
+        appointment_id = request.POST.get("appointment_id")
+        appointment = Appointment.objects.get(id=appointment_id)
+        appointment.is_completed = not appointment.is_completed
+        appointment.save()
+        return redirect('staff_appointments')
+
     context = {
-        'appointments': all_appointments
+        'appointments': all_appointments,
     }
 
     return render(request, 'appointments/staff_appointment.html', context)

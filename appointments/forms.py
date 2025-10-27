@@ -1,7 +1,6 @@
 from django import forms
 from .models import Appointment, BarangayClearance, CertificateOfIndigency, CommunityTaxCertificate, SoloParentCertificate
 
-
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
