@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7c3il!end^koa!k)chea=#d=0g%v#g$(y9_)i3xn=ga%-dy*41'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['boacms.onrender.com', 'localhost', '127.0.0.1']
 

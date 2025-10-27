@@ -71,7 +71,7 @@
   padding: 10px;
   border: none;
   background-color: darkgreen;
-  color: white;
+  color: #ffffff;
 }
 
 .cert button:hover {
@@ -81,16 +81,17 @@
 .user_appointments {
   font-size: 16px;
   display: block;
-  width: 100%;
+  width: 80%;
   justify-items: center;
   height: 100%;
+  padding: 20px 0px;
 }
 
 .user_appointments div {
   margin: 5px;
   color: white;
   display: flex;
-  width: 1000px;
+  width: 100%;
   gap: 10px;
   justify-content: space-evenly;
   padding: 10px;
@@ -100,14 +101,17 @@
 .appointment_title {
   font-weight: bold;
   background-color: darkgreen;
+  box-shadow: 0px 0px 5px 2px gray;
 }
 
 .appointment_title div {
   border: none;
+  box-shadow: 0px 2px 5px 2px green;
 }
 
 .appointment_content {
   background-color: whitesmoke;
+  box-shadow: 0px 5px 5px 2px gray;
 }
 
 .appointment_content div {
@@ -115,6 +119,36 @@
   color: black;
 }
 
-.status {
-  border: 1px solid black;
+.status button {
+  background-color: inherit;
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 20px;
+  padding: 0;
+  justify-content: center;
+  box-shadow: 0px 5px 5px 2px gray;
+}
+
+.status button:hover {
+  cursor: pointer;
+  transform: translateY(-5%);
+}
+
+.approved, .pending {
+  height: 100%;
+  width: inherit;
+  margin: 0;
+  border-radius: inherit;
+  align-content: center;
+}
+
+.approved {
+  background-color: green;
+  color: white;
+}
+
+.pending {
+  background-color: red;
+  color: white;
 }
