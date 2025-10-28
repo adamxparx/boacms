@@ -5,9 +5,9 @@
 
 {% block appbar %}
     <ul>
-        <li><a href="{% url 'dashboard' %}">HOME</a></li>
-        <li><a href="{% url 'barangay_clearance' %}">CERTIFICATIONS</a></li>
-        <li><a href="{% url 'appointments' %}">APPOINTMENTS</a></li>
+        <li><a href="{% url 'dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' %}aria-current="page"{% endif %}>HOME</a></li>
+        <li><a href="{% url 'barangay_clearance' %}" {% if request.resolver_match.url_name == 'barangay_clearance' or request.resolver_match.url_name == 'barangay_clearance_form' %}aria-current="page"{% endif %}>CERTIFICATIONS</a></li>
+        <li><a href="{% url 'appointments' %}" {% if request.resolver_match.url_name == 'appointments' or request.resolver_match.url_name == 'appointment_detail' %}aria-current="page"{% endif %}>APPOINTMENTS</a></li>
     </ul>
 
 {% endblock %}

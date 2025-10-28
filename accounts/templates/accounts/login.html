@@ -1,46 +1,52 @@
-{% extends "accounts/index.html" %} 
+{% extends "accounts/index.html" %}
 {% load static %}
 
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="form-login">
+<section class="auth-wrapper">
+    <div class="auth-card">
+        <header class="auth-header">
+            <h1 class="auth-title">Welcome back</h1>
+            <p class="auth-subtitle">Sign in to manage your barangay appointments and certifications.</p>
+        </header>
 
-        {% for message in messages %}
-            <p class="messages">{{ message }}</p>
-        {% endfor %}
-
-    <p class="form-title">Login</p>
-    <form method="post" action="{% url 'login' %}">
-
-        {% csrf_token %} 
-
-        <div class="form-group">
-
-            <label class="email_label" for="id_email">Email</label>
-            {{ form.username }} 
-
-        </div>
-
-        <div class="form-group">
-
-            <label class="password_label" for="id_password">Password</label>
-            {{ form.password }} 
-
-        </div>
-
-        <div class="form-action">
-
-            <button type="submit">Login</button>
-
-        </div>
-
-        {% if form.errors %}
-        <div class="error-message">
-            <p>*Your username or password didn't match.</p>
-        </div>
+        {% if messages %}
+            <div class="auth-alert auth-alert--info">
+                <ul class="auth-alert__list">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         {% endif %}
 
-    </form>
-</div>
+        {% if form.errors %}
+            <div class="auth-alert auth-alert--error">
+                <p>Your email or password didn't match. Please try again.</p>
+            </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}" class="auth-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="id_username">Email</label>
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_password">Password</label>
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+
+        <div class="auth-footer">
+            <span>Don't have an account yet?</span>
+            <a href="{% url 'register' %}">Register</a>
+        </div>
+    </div>
+</section>
 {% endblock content %}
