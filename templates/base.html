@@ -4,43 +4,45 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Barangay OACMS{% endblock %}</title>
+        <title>{% block title %}Barangay Online Appointment and Certification Management System{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <link rel="icon" type="images/png" href="{% static 'images/logo.png' %}">
         {% block extra_css %}{% endblock %}
     </head>
     <body>
-        <div class="container">
-            <div class="logo-appbar">
-                <a href="{% url 'index' %}">
-                    <img src="{% static 'images/logo.png' %}" />
+        <a class="skip-link" href="#main-content">Skip to content</a>
+
+        <header class="site-header">
+            <div class="site-branding">
+                <a class="brand" href="{% url 'index' %}">
+                    <img src="{% static 'images/logo.png' %}" alt="Barangay OACMS logo" />
+                    <div class="brand-copy">
+                        <span class="brand-title">Barangay Online Appointment and Certification Management System</span>
+                        <span class="brand-subtitle">Online Services &amp; Certifications</span>
+                    </div>
                 </a>
-                <div class="appbar">
+                <nav class="primary-nav" aria-label="Main navigation">
                     {% block appbar %}{% endblock %}
-                </div>
-            </div>    
-            <div>
+                </nav>
+            </div>
+            <div class="header-actions">
                 {% if user.is_authenticated %}
                     {% block user_logout %}{% endblock %}
                 {% else %}
-                <div class="auth">
-                    <ul>
-                        <li class="login"><a href="{% url 'login' %}">LOGIN</a></li>
-                        <li class="register"><a href="{% url 'register' %}">REGISTER</a></li>
-                    </ul>
+                <div class="auth-links">
+                    <a class="btn btn-text" href="{% url 'login' %}">Login</a>
+                    <a class="btn btn-primary" href="{% url 'register' %}">Register</a>
                 </div>
                 {% endif %}
             </div>
-        </div>
+        </header>
 
-        <div class="content">
+        <main id="main-content" class="content">
 
             {% block content %}
-                
                 <!-- BLOCK CONTENT -->
-
             {% endblock %}
 
-        </div>
+        </main>
     </body>
 </html>
