@@ -3,9 +3,10 @@
 }
 
 .messages {
-    color: green;
-    font-size: 20px;
+    color: var(--color-primary);
+    font-size: 1.15rem;
     text-align: center;
+    font-weight: 600;
 }
 
 .form-group-container {
@@ -13,22 +14,205 @@
     gap: 20px;
 }
 
-.form-group {
+.auth-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4vw, 3rem);
+}
+
+.auth-card {
+    background-color: var(--color-neutral);
+    border-radius: 32px;
+    box-shadow: 0 22px 40px rgba(0, 56, 168, 0.18);
+    padding: clamp(1.75rem, 4.5vw, 2.75rem);
+    width: min(420px, 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.auth-card--wide {
+    width: min(780px, 100%);
+}
+
+.auth-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.auth-title {
+    margin: 0;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    color: var(--color-primary);
+}
+
+.auth-subtitle {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.68);
+    font-size: 1rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.auth-form--grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.auth-form--grid .form-field:nth-last-child(1) {
+    grid-column: span 2;
+}
+
+.auth-form--grid .form-submit {
+    grid-column: span 2;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     text-align: left;
-    font-size: 15px;
+    font-size: 0.95rem;
+}
+
+.form-field label {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(0, 56, 168, 0.22);
+    background-color: var(--color-neutral);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 4px rgba(252, 209, 22, 0.25);
+}
+
+.auth-alert {
+    border-radius: 18px;
+    padding: 1rem 1.25rem;
+    background-color: rgba(0, 56, 168, 0.08);
+    border: 1px solid rgba(0, 56, 168, 0.18);
+    color: var(--color-primary);
+}
+
+.auth-alert__list {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.auth-alert--info {
+    background-color: rgba(252, 209, 22, 0.15);
+    border-color: rgba(252, 209, 22, 0.35);
+    color: var(--color-text);
+}
+
+.auth-alert--error {
+    background-color: rgba(206, 17, 38, 0.12);
+    border-color: rgba(206, 17, 38, 0.32);
+    color: #86121d;
+}
+
+.field-error {
+    font-size: 0.85rem;
+    color: var(--color-accent);
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.auth-footer {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.auth-footer a {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.auth-footer a:hover,
+.auth-footer a:focus {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .auth-card--wide {
+        width: 100%;
+    }
+
+    .auth-form--grid {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-form--grid .form-field:nth-last-child(1),
+    .auth-form--grid .form-submit {
+        grid-column: span 1;
+    }
+}
+
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.95rem;
 }
 
 .form-group label {
-    font-size: 15px;
-    display: block;
-    text-align: left;
-    margin-top: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
-.form-group input {
-    font-size: 20px;
-    padding: 10px;
-    width: 400px;
+.form-group input,
+.form-group select,
+.form-group textarea {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(0, 56, 168, 0.22);
+    background-color: var(--color-neutral);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 4px rgba(252, 209, 22, 0.25);
 }
 
 .form-action {
@@ -37,16 +221,22 @@
 }
 
 .form-action button {
-    color: white;
-    background-color: #050;
+    color: var(--color-text);
+    background-color: var(--color-secondary);
     border: none;
     width: 100%;
-    height: 40px;
+    height: 48px;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    box-shadow: 0 10px 24px rgba(252, 209, 22, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-action button:hover {
     cursor: pointer;
-    background-color: #565;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px rgba(252, 209, 22, 0.45);
 }
 
 .form-title {
@@ -67,12 +257,12 @@
 
 .profile-dropdown summary {
     list-style: none;
-    font-weight: bold;
+    font-weight: 600;
     display: flex;
     gap: 10px;
     width: fit-content;
     justify-content: center;
-    color: darkgreen;
+    color: var(--color-primary);
 }
 
 .profile-dropdown summary:hover {
@@ -81,7 +271,7 @@
 
 .dropdown-icon {
     width: 18px;
-    color: darkgreen;
+    color: var(--color-secondary);
 }
 
 a {
@@ -93,23 +283,25 @@ a {
     position: absolute;
 }
 
-.dropdown-button button, .dropdown-button a div {
+.dropdown-button button,
+.dropdown-button a div {
     padding: 10px 20px;
-    background-color: white;
+    background-color: transparent;
     text-align: left;
     border: none;
     width: 200px;
     font-size: 14px;
+    color: var(--color-text);
 }
 
 .dropdown-button a div {
     width: 160px;
 }
 
-.dropdown-button button:hover, .dropdown-button a div:hover {
+.dropdown-button button:hover,
+.dropdown-button a div:hover {
     cursor: pointer;
-    border: 1px solid black;
-    padding: 9.5px 19px;
+    background-color: rgba(0, 56, 168, 0.08);
 }
 
 .form-profile {
@@ -125,19 +317,25 @@ a {
 .form-profile button {
     width: 100%;
     padding: 10px 20px;
-    background-color: darkgreen;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-neutral);
     border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-profile button:hover {
-    background-color: #3f6a3f;
+    background-color: #1f57c1;
     cursor: pointer;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(0, 56, 168, 0.25);
 }
 
 .message {
-    color: darkgreen;
-    font-size: 14px;
+    color: var(--color-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
 
