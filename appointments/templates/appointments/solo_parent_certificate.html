@@ -5,39 +5,49 @@
 
 {% block cert_content %}
 
-    <div class="cert-title">Solo Parent Certificate</div>
-    <form class="cert" method="post">
-        {% csrf_token %}
-        <div class="appointment">
-            <div class="title">Appointment Details</div>
+    <div class="auth-wrapper">
+      <div class="auth-card auth-card--wide">
+        <div class="auth-header">
+          <h2 class="auth-title">Solo Parent Certificate</h2>
+          <p class="auth-subtitle">Provide your appointment and personal details below.</p>
+        </div>
+
+        <form method="post" class="auth-form auth-form--grid">
+          {% csrf_token %}
+
+          <div class="form-field">
             <label for="{{ appointment_form.appointment_date.id_for_label }}">Appointment Date</label>
-            <div>
-                {{ appointment_form.appointment_date }}
-            </div>
+            {{ appointment_form.appointment_date }}
+          </div>
+
+          <div class="form-field">
             <label for="{{ appointment_form.appointment_time.id_for_label }}">Appointment Time</label>
-            <div>
-                {{ appointment_form.appointment_time }}
-            </div>
+            {{ appointment_form.appointment_time }}
+          </div>
+
+          <div class="form-field" style="grid-column: span 2;">
             <label for="{{ appointment_form.purpose.id_for_label }}">Purpose</label>
-            <div>
-                {{ appointment_form.purpose }}
+            {{ appointment_form.purpose }}
+            <div class="field-error">{{ appointment_form.purpose.help_text }}</div>
+          </div>
+
+          <div class="form-field" style="grid-column: span 2;">
+            <label for="{{ clearance_form.present_address.id_for_label }}">Present Address</label>
+            {{ clearance_form.present_address }}
+          </div>
+
+          <div class="form-field">
+            <label for="{{ clearance_form.contact_number.id_for_label }}">Contact Number</label>
+            {{ clearance_form.contact_number }}
+          </div>
+
+          <div class="form-submit">
+            <div class="form-action">
+              <button type="submit">Book Appointment</button>
             </div>
-            <div class="help_text">
-                {{ appointment_form.purpose.help_text }}
-            </div>
-        </div>
-        <div class="clearance">
-            <div class="title">Personal Details</div>
-            <label for="{{ clearance_Form.present_address.id_for_label }}">Present Address</label>
-            <div>
-                {{ clearance_form.present_address }}
-            </div>
-            <label for="{{ clearance_Form.contact_number.id_for_label }}">Contact Number</label>
-            <div>
-                {{ clearance_form.contact_number }}
-            </div>
-        </div>
-        <button type="submit">Book</button>
-    </form>
+          </div>
+        </form>
+      </div>
+    </div>
 
 {% endblock %}
