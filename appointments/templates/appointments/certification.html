@@ -6,11 +6,11 @@
 {% block content %}
 
 <div class="certification-block">
-  <div class="options">
-    <a href="{% url 'barangay_clearance' %}"><button>Barangay Clearance</button></a>
-    <a href="{% url 'indigency_certificate' %}"><button>Certificate of Indigency</button></a>
-    <a href="{% url 'comm_tax_cert' %}"><button>Community Tax Certificate (Cedula)</button></a>
-    <a href="{% url 'solo_parent_cert' %}"><button>Solo Parent Certificate</button></a>
+  <div class="options tabs" role="tablist" aria-label="Certification Types">
+    <a href="{% url 'barangay_clearance' %}" class="tab" {% if request.resolver_match.url_name == 'barangay_clearance' %}aria-current="page"{% endif %}>Barangay Clearance</a>
+    <a href="{% url 'indigency_certificate' %}" class="tab" {% if request.resolver_match.url_name == 'indigency_certificate' %}aria-current="page"{% endif %}>Certificate of Indigency</a>
+    <a href="{% url 'comm_tax_cert' %}" class="tab" {% if request.resolver_match.url_name == 'comm_tax_cert' %}aria-current="page"{% endif %}>Community Tax Certificate (Cedula)</a>
+    <a href="{% url 'solo_parent_cert' %}" class="tab" {% if request.resolver_match.url_name == 'solo_parent_cert' %}aria-current="page"{% endif %}>Solo Parent Certificate</a>
   </div>
 
   <div class="cert_content">

@@ -28,6 +28,40 @@
   cursor: pointer;
 }
 
+/* New tabbed navigation styles */
+.tabs {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.tabs .tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  color: var(--color-primary);
+  background-color: var(--color-neutral);
+  border: 1px solid rgba(0, 56, 168, 0.22);
+  text-decoration: none;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.tabs .tab:hover,
+.tabs .tab:focus {
+  background-color: rgba(0, 56, 168, 0.08);
+  outline: none;
+}
+
+.tabs .tab[aria-current="page"] {
+  background-color: var(--color-primary);
+  color: var(--color-neutral);
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 22px rgba(0, 56, 168, 0.20), 0 0 0 3px rgba(252, 209, 22, 0.25);
+}
+
 .cert_content {
   display: block;
   justify-items: center;
