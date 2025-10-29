@@ -31,8 +31,15 @@
 .cert_content {
   display: block;
   justify-items: center;
-  padding: 50px 0;
+  padding: 16px 0;
   height: 100%;
+}
+
+/* Reduce space above redesigned forms inside certification pages */
+.cert_content .auth-wrapper {
+  padding-top: 8px;
+  padding-bottom: 16px;
+  align-items: flex-start;
 }
 
 .cert-title {
