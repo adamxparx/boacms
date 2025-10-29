@@ -4,7 +4,7 @@
 {% block title %}Appointments{% endblock %}
 
 {% block content %}
-
+ <div class="appointments_center" style="display: flex; justify-content: center;">
 {% if appointments %}
     <div class="user_appointments">
         <div class="appointment_title">
@@ -21,9 +21,9 @@
                 <div>{{ appointment.appointment_time }}</div>
                 <div>{{ appointment.purpose }}</div>
                 {% if appointment.is_completed %}
-                    <div class="status">Approved</div>
+                    <div class="status approved">Approved</div>
                 {% else %}
-                    <div class="status">Pending</div>
+                    <div class="status pending">Pending</div>
                 {% endif %}
             </div>
         {% endfor %}
@@ -31,6 +31,6 @@
 {% else %}
     <div>You have no upcoming appointments.</div>
 {% endif %}
+ </div>
 
 {% endblock %}
-
