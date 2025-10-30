@@ -1,7 +1,33 @@
 {% extends 'accounts/dashboard.html' %}
 {% load static %}
 
-{% block title %}Appointments{% endblock %}
+{% block title %}Appointments<script>
+  // Frontend confirm dialog for cancel button; requires backend route 'cancel_appointment'
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.cancel-form').forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        const ok = confirm('Are you sure you want to cancel this appointment? This action cannot be undone.');
+        if (!ok) {
+          e.preventDefault();
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.cancel-form').forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        if (!confirm('Are you sure you want to cancel this appointment? This action cannot be undone.')) {
+          e.preventDefault();
+        }
+      });
+    });
+  });
+</script>
+
+{% endblock %}
 
 {% block content %}
  <div class="appointments_center" style="display: flex; justify-content: center;">
@@ -13,6 +39,7 @@
             <div>Appointment Time</div>
             <div>Purpose</div>
             <div>Status</div>
+            <div>Actions</div>
         </div>
         {% for appointment in appointments %}
             <div class="appointment_content">
@@ -25,6 +52,12 @@
                 {% else %}
                     <div class="status pending">Pending</div>
                 {% endif %}
+                <div>
+                    <form method="post" class="cancel-form" action="/appointments/cancel/{{ appointment.id }}/">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn--danger">Cancel</button>
+                    </form>
+                </div>
             </div>
         {% endfor %}
     </div>

@@ -5,6 +5,7 @@
 
 {% block content %}
 
+<div class="appointments_center" style="display: flex; justify-content: center;">
 {% if appointments %}
     <div class="user_appointments">
         <div class="appointment_title">
@@ -41,6 +42,7 @@
 {% else %}
     <div>You have no upcoming appointments.</div>
 {% endif %}
+</div>
 
 {% endblock %}
 

@@ -126,6 +126,19 @@
   justify-items: center;
   height: 100%;
   padding: 20px 0px;
+  margin: 0 auto;
+}
+
+/* Full-width variant for staff page to remove right-side space */
+.user_appointments--full {
+  width: 100%;
+  max-width: none;
+}
+
+/* Ensure grid stretches edge-to-edge in full mode */
+.user_appointments--full .appointment_title,
+.user_appointments--full .appointment_content {
+  border-radius: 16px;
 }
 
 .user_appointments div {
@@ -145,7 +158,7 @@
   color: white;
   box-shadow: 0 12px 24px rgba(0, 56, 168, 0.18);
   display: grid;
-  grid-template-columns: 2fr 1.3fr 1fr 2fr 1fr;
+  grid-template-columns: 2fr 1.3fr 1fr 2fr 1fr 1.2fr;
   align-items: center;
 }
 
@@ -159,7 +172,7 @@
   background-color: var(--color-neutral);
   color: var(--color-text);
   display: grid;
-  grid-template-columns: 2fr 1.3fr 1fr 2fr 1fr;
+  grid-template-columns: 2fr 1.3fr 1fr 2fr 1fr 1.2fr;
   align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 10px 24px rgba(0, 56, 168, 0.12);
@@ -242,6 +255,15 @@
   color: #111827;
 }
 .btn--warning:hover {
+  cursor: pointer;
+  filter: brightness(0.95);
+}
+
+.btn--danger {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+.btn--danger:hover {
   cursor: pointer;
   filter: brightness(0.95);
 }
