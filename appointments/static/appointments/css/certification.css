@@ -210,3 +210,38 @@
   color: #86121d;
   border: 1px solid rgba(206, 17, 38, 0.32);
 }
+
+/* Buttons on confirmation and certification pages */
+.button-as-link {
+  text-decoration: none;
+}
+
+.button-as-link button.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.2px; /* give words some space */
+  border: none;
+}
+
+.btn--secondary {
+  background-color: #6b7280; /* grey */
+  color: #ffffff;
+}
+.btn--secondary:hover {
+  cursor: pointer;
+  filter: brightness(0.95);
+}
+
+.btn--warning {
+  background-color: #fbbf24; /* yellow */
+  color: #111827;
+}
+.btn--warning:hover {
+  cursor: pointer;
+  filter: brightness(0.95);
+}

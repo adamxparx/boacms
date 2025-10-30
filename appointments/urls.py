@@ -8,4 +8,5 @@ urlpatterns = [
     path('certificate_of_indigency/', views.certificate_of_indigency, name='indigency_certificate'),
     path('community_tax_certificate/', views.comm_tax_certificate, name='comm_tax_cert'),
     path('solo_parent_certificate/', views.solo_parent_certificate, name='solo_parent_cert'),
+    path('confirmation/<int:appointment_id>/', views.confirmation, name='confirmation'),
 ] 

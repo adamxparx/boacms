@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import AppointmentForm, BarangayClearanceForm, CertificateOfIndigencyForm, CommunityTaxCertificateForm, SoloParentCertificateForm
 from .models import Appointment, CertificationType
@@ -22,7 +22,7 @@ def barangay_clearance(request):
             clearance.appointment = appointment
             clearance.save()
 
-            return redirect('appointments')
+            return redirect('confirmation', appointment_id=appointment.id)
         
     else:
         appointment_form = AppointmentForm()
@@ -53,7 +53,7 @@ def certificate_of_indigency(request):
             clearance.appointment = appointment
             clearance.save()
 
-            return redirect('appointments')
+            return redirect('confirmation', appointment_id=appointment.id)
         
     else:
         appointment_form = AppointmentForm()
@@ -84,7 +84,7 @@ def comm_tax_certificate(request):
             clearance.appointment = appointment
             clearance.save()
 
-            return redirect('appointments')
+            return redirect('confirmation', appointment_id=appointment.id)
         
     else:
         appointment_form = AppointmentForm()
@@ -115,7 +115,7 @@ def solo_parent_certificate(request):
             clearance.appointment = appointment
             clearance.save()
 
-            return redirect('appointments')
+            return redirect('confirmation', appointment_id=appointment.id)
         
     else:
         appointment_form = AppointmentForm()
@@ -137,6 +137,41 @@ def appointments(request):
     }
 
     return render(request, 'appointments/appointment.html', context)
+
+@login_required
+def confirmation(request, appointment_id):
+    appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
+
+    cert_name = appointment.certificate_type.name
+    context = {
+        'appointment': appointment,
+        'certificate_name': cert_name,
+    }
+
+    # Attach certificate-specific details if they exist
+    if cert_name == "Barangay Clearance":
+        try:
+            context['barangay_clearance'] = appointment.barangayclearance
+        except Exception:
+            pass
+    elif cert_name == "Certificate of Indigency":
+        try:
+            context['indigency'] = appointment.certificateofindigency
+        except Exception:
+            pass
+    elif cert_name == "Community Tax Certificate":
+        try:
+            context['community_tax_certificate'] = appointment.communitytaxcertificate
+        except Exception:
+            pass
+    elif cert_name == "Solo Parent Certificate":
+        try:
+            context['solo_parent_certificate'] = appointment.soloparentcertificate
+        except Exception:
+            pass
+
+    return render(request, 'appointments/confirmation.html', context)
+
 
 @login_required
 def staff_appointments(request):
