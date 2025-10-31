@@ -192,9 +192,16 @@ def staff_appointments(request):
 
 @login_required
 def cancel_appointment(request, appointment_id):
+    appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
+    
     if request.method == 'POST':
-        appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
+        # If form is submitted with confirmation
         appointment.delete()
         messages.success(request, 'Appointment has been cancelled successfully.')
         return redirect('appointments')
-    return redirect('appointments')
+    
+    # If GET request, show confirmation page
+    context = {
+        'appointment': appointment,
+    }
+    return render(request, 'appointments/confirm_cancel.html', context)
