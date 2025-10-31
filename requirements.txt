@@ -1,7 +1,9 @@
 asgiref==3.10.0
-Django==5.2.7
+dj-database-url==3.0.1
+Django==5.2.6
 psycopg2==2.9.10
 python-decouple==3.8
-python-dotenv==1.1.1
 sqlparse==0.5.3
+tzdata==2025.2
 whitenoise==6.11.0
+gunicorn==23.0.0
