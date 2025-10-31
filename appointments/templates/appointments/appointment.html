@@ -1,33 +1,7 @@
 {% extends 'accounts/dashboard.html' %}
 {% load static %}
 
-{% block title %}Appointments<script>
-  // Frontend confirm dialog for cancel button; requires backend route 'cancel_appointment'
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.cancel-form').forEach(function(form) {
-      form.addEventListener('submit', function(e) {
-        const ok = confirm('Are you sure you want to cancel this appointment? This action cannot be undone.');
-        if (!ok) {
-          e.preventDefault();
-        }
-      });
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.cancel-form').forEach(function(form) {
-      form.addEventListener('submit', function(e) {
-        if (!confirm('Are you sure you want to cancel this appointment? This action cannot be undone.')) {
-          e.preventDefault();
-        }
-      });
-    });
-  });
-</script>
-
-{% endblock %}
+{% block title %}Appointments{% endblock %}
 
 {% block content %}
  <div class="appointments_center" style="display: flex; justify-content: center;">
