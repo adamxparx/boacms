@@ -4,7 +4,12 @@
 {% block title %}Appointments{% endblock %}
 
 {% block content %}
- <div class="appointments_center" style="display: flex; justify-content: center;">
+<style>
+    .btn--danger:hover {
+        text-decoration: none !important;
+    }
+</style>
+<div class="appointments_center" style="display: flex; justify-content: center;">
 {% if appointments %}
     <div class="user_appointments">
         <div class="appointment_title">
@@ -27,10 +32,7 @@
                     <div class="status pending">Pending</div>
                 {% endif %}
                 <div>
-                    <form method="post" class="cancel-form" action="/appointments/cancel/{{ appointment.id }}/">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn--danger">Cancel</button>
-                    </form>
+                    <a href="{% url 'cancel_appointment' appointment.id %}" class="btn btn--danger">Cancel</a>
                 </div>
             </div>
         {% endfor %}

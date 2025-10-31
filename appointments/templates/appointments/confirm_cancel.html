@@ -1,0 +1,129 @@
+{% extends 'accounts/dashboard.html' %}
+{% load static %}
+
+{% block title %}Confirm Cancellation{% endblock %}
+
+{% block content %}
+<div class="confirmation-container" style="max-width: 600px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <div style="background-color: #fef3c7; width: 64px; height: 64px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+        </div>
+        <h2 style="color: #1e40af; margin: 0 0 1rem 0; font-size: 1.5rem; font-weight: 600;">Cancel Appointment</h2>
+        <p style="color: #4b5563; margin: 0;">Are you sure you want to cancel this appointment? This action cannot be undone.</p>
+    </div>
+    
+    <div class="appointment-details" style="background-color: #f8fafc; border-radius: 6px; padding: 1.5rem; margin-bottom: 2rem; border-left: 4px solid #0038a8;">
+        <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038a8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span style="font-weight: 600; color: #1e40af;">{{ appointment.certificate_type.name }}</span>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0.75rem;
+        ">
+            <div style="display: flex; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span style="color: #4b5563;">{{ appointment.appointment_date }}</span>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span style="color: #4b5563;">{{ appointment.appointment_time }}</span>
+            </div>
+        </div>
+        
+        <div style="display: flex; align-items: flex-start;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem; margin-top: 0.2rem;">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <div>
+                <div style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Purpose</div>
+                <div style="color: #1f2937; font-weight: 500;">{{ appointment.purpose }}</div>
+            </div>
+        </div>
+    </div>
+    
+    <form method="post" action="{% url 'cancel_appointment' appointment.id %}" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+        {% csrf_token %}
+        <a href="{% url 'appointments' %}" class="btn-cancel" style="display: inline-flex; align-items: center; justify-content: center; padding: 0.625rem 1.25rem; border-radius: 6px; border: 1px solid #d1d5db; background-color: white; color: #374151; font-weight: 500; transition: all 0.2s; text-decoration: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            No, Keep Appointment
+        </a>
+        <button type="submit" class="cancel-confirm-btn" style="display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: 6px; border: none; background-color: #dc2626; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.3px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                <line x1="10" y1="11" x2="10" y2="17"></line>
+                <line x1="14" y1="11" x2="14" y2="17"></line>
+            </svg>
+            Yes, Cancel Appointment
+        </button>
+    </form>
+</div>
+
+<style>
+    @media (max-width: 640px) {
+        .confirmation-container {
+            margin: 1rem;
+            padding: 1.5rem;
+        }
+        
+        .appointment-details {
+            grid-template-columns: 1fr !important;
+        }
+        
+        form {
+            flex-direction: column;
+        }
+        
+        button, a[role="button"] {
+            width: 100%;
+            margin: 0.25rem 0;
+        }
+    }
+    
+    button:hover {
+        background-color: #b91c1c !important;
+    }
+    
+    a[role="button"]:hover {
+        background-color: #f3f4f6;
+        text-decoration: none;
+    }
+    
+    .btn-cancel:hover {
+        text-decoration: none !important;
+    }
+    
+    .cancel-confirm-btn {
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .cancel-confirm-btn:hover {
+        background-color: #b91c1c !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    .cancel-confirm-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+    }
+</style>
+{% endblock %}
