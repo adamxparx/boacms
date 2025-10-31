@@ -189,3 +189,12 @@ def staff_appointments(request):
     }
 
     return render(request, 'appointments/staff_appointment.html', context)
+
+@login_required
+def cancel_appointment(request, appointment_id):
+    if request.method == 'POST':
+        appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
+        appointment.delete()
+        messages.success(request, 'Appointment has been cancelled successfully.')
+        return redirect('appointments')
+    return redirect('appointments')
