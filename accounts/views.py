@@ -1,16 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
-from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout
 from django.contrib import messages
-from .forms import CustomUserCreationForm, CustomUserUpdateForm
+from .forms import CustomUserCreationForm, CustomUserUpdateForm, ResidentForm
 
 def auth_check(user):
     if user.is_authenticated:
         if user.role == 'resident':
             return redirect('dashboard')
-        elif user.role == 'barangay_staff':
+        elif user.role == 'staff':
             return redirect('staff_dashboard')
     return None
 
@@ -21,31 +20,40 @@ class CustomLoginView(LoginView):
         if response:
             return response
         return super().dispatch(request, *args, **kwargs)
-
-    
+      
 def index(request):
-    response = auth_check(request.user)
+    user = request.user
+    response = auth_check(user)
     if response:
         return response
     
-    return render(request, 'accounts/index.html')
+    context = {
+        'user': user,
+    }
+    return render(request, 'accounts/index.html', context)
 
 def register(request):
     response = auth_check(request.user)
     if response:
         return response
-
+    
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
+        user_form = CustomUserCreationForm(request.POST)
+        resident_form = ResidentForm(request.POST)
+        if user_form.is_valid() and resident_form.is_valid():
+            user = user_form.save()
+            resident = resident_form.save(commit=False)
+            resident.user = user
+            resident.save()
             messages.success(request, 'Your account has been created successfully!')
             return redirect('login') 
     else:
-        form = CustomUserCreationForm()
+        user_form = CustomUserCreationForm()
+        resident_form = ResidentForm()
 
     context = {
-        'form': form,
+        'user_form': user_form,
+        'resident_form': resident_form,
     }
     return render(request, 'accounts/register.html', context)
 
@@ -53,7 +61,7 @@ def register(request):
 def dashboard(request):
     user = request.user
 
-    if user.role == 'barangay_staff':
+    if user.role == 'staff':
         return redirect('staff_dashboard')
     
     elif user.role == 'resident':
@@ -79,7 +87,7 @@ def staff_dashboard(request):
 @login_required
 def profile(request):
     user = request.user
-
+    
     if request.method == 'POST':
         form = CustomUserUpdateForm(request.POST, instance=user)
         if form.is_valid():

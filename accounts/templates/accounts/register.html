@@ -11,9 +11,19 @@
             <p class="auth-subtitle">Sign up to request certifications and schedule barangay services online.</p>
         </header>
 
-        {% if form.non_field_errors %}
+        <!-- user form error -->
+        {% if user_form.non_field_errors %}
             <div class="auth-alert auth-alert--error">
-                {% for error in form.non_field_errors %}
+                {% for error in user_form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- resident form error -->
+        {% if resident_form.non_field_errors %}
+            <div class="auth-alert auth-alert--error">
+                {% for error in resident_form.non_field_errors %}
                     <p>{{ error }}</p>
                 {% endfor %}
             </div>
@@ -23,65 +33,97 @@
             {% csrf_token %}
 
             <div class="form-field">
-                <label for="{{ form.first_name.id_for_label }}">First Name</label>
-                {{ form.first_name }}
-                {% for error in form.first_name.errors %}
+                <label for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+                {{ user_form.email }}
+                {% for error in user_form.email.errors %}
                     <span class="field-error">{{ error }}</span>
                 {% endfor %}
             </div>
 
             <div class="form-field">
-                <label for="{{ form.last_name.id_for_label }}">Last Name</label>
-                {{ form.last_name }}
-                {% for error in form.last_name.errors %}
+                <label for="{{ resident_form.first_name.id_for_label }}">{{ resident_form.first_name.label }}</label>
+                {{ resident_form.first_name }}
+                {% for error in resident_form.first_name.errors %}
                     <span class="field-error">{{ error }}</span>
                 {% endfor %}
             </div>
 
             <div class="form-field">
-                <label for="{{ form.middle_name.id_for_label }}">Middle Name</label>
-                {{ form.middle_name }}
-                {% for error in form.middle_name.errors %}
+                <label for="{{ resident_form.middle_name.id_for_label }}">{{ resident_form.middle_name.label }}</label>
+                {{ resident_form.middle_name }}
+                {% for error in resident_form.middle_name.errors %}
                     <span class="field-error">{{ error }}</span>
                 {% endfor %}
             </div>
 
             <div class="form-field">
-                <label for="{{ form.date_of_birth.id_for_label }}">Date of Birth</label>
-                {{ form.date_of_birth }}
-                {% for error in form.date_of_birth.errors %}
+                <label for="{{ resident_form.last_name.id_for_label }}">{{ resident_form.last_name.label }}</label>
+                {{ resident_form.last_name }}
+                {% for error in resident_form.last_name.errors %}
                     <span class="field-error">{{ error }}</span>
                 {% endfor %}
             </div>
 
             <div class="form-field">
-                <label for="{{ form.email.id_for_label }}">Email</label>
-                {{ form.email }}
-                {% for error in form.email.errors %}
+                <label for="{{ resident_form.date_of_birth.id_for_label }}">{{ resident_form.date_of_birth.label }}</label>
+                {{ resident_form.date_of_birth }}
+                {% for error in resident_form.date_of_birth.errors %}
                     <span class="field-error">{{ error }}</span>
                 {% endfor %}
             </div>
 
             <div class="form-field">
-                <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
-                {{ form.phone_number }}
-                {% for error in form.phone_number.errors %}
+                <label for="{{ resident_form.sex.id_for_label }}">{{ resident_form.sex.label }}</label>
+                {{ resident_form.sex }}
+                {% for error in resident_form.sex.errors %}
                     <span class="field-error">{{ error }}</span>
                 {% endfor %}
             </div>
 
             <div class="form-field">
-                <label for="{{ form.password1.id_for_label }}">Password</label>
-                {{ form.password1 }}
-                {% for error in form.password1.errors %}
+                <label for="{{ resident_form.address.id_for_label }}">{{ resident_form.address.label }}</label>
+                {{ resident_form.address }}
+                {% for error in resident_form.address.errors %}
                     <span class="field-error">{{ error }}</span>
                 {% endfor %}
             </div>
 
             <div class="form-field">
-                <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
-                {{ form.password2 }}
-                {% for error in form.password2.errors %}
+                <label for="{{ resident_form.phone_number.id_for_label }}">{{ resident_form.phone_number.label }}</label>
+                {{ resident_form.phone_number }}
+                {% for error in resident_form.phone_number.errors %}
+                    <span class="field-error">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-field">
+                <label for="{{ resident_form.civil_status.id_for_label }}">{{ resident_form.civil_status.label }}</label>
+                {{ resident_form.civil_status }}
+                {% for error in resident_form.civil_status.errors %}
+                    <span class="field-error">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-field">
+                <label for="{{ resident_form.citizenship.id_for_label }}">{{ resident_form.citizenship.label }}</label>
+                {{ resident_form.citizenship }}
+                {% for error in resident_form.citizenship.errors %}
+                    <span class="field-error">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-field">
+                <label for="{{ user_form.password1.id_for_label }}">{{ user_form.password1.label }}</label>
+                {{ user_form.password1 }}
+                {% for error in user_form.password1.errors %}
+                    <span class="field-error">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-field">
+                <label for="{{ user_form.password2.id_for_label }}">{{ user_form.password2.label }}</label>
+                {{ user_form.password2 }}
+                {% for error in user_form.password2.errors %}
                     <span class="field-error">{{ error }}</span>
                 {% endfor %}
             </div>

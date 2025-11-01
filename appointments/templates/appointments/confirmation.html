@@ -4,108 +4,47 @@
 {% block title %}Certification | Confirmation{% endblock %}
 
 {% block cert_content %}
+<div class="auth-wrapper">
+  <div class="auth-card auth-card--wide">
+    <div class="auth-header">
+      <h2 class="auth-title">{{ certificate_name }}</h2>
+      <p class="auth-subtitle">Full Name: {{ appointment.resident.resident.first_name }} {{ appointment.resident.resident.last_name }}</p>
+      <p class="auth-subtitle">Purpose: {{ appointment.purpose }}</p>
+    </div>
 
-  <div class="auth-wrapper">
-    <div class="auth-card auth-card--wide">
-      <div class="auth-header">
-        <h2 class="auth-title">{{ certificate_name }}</h2>
-        <p class="auth-subtitle">Full Name: {{ appointment.user.get_full_name }}</p>
-        <p class="auth-subtitle">Purpose: {{ appointment.purpose }}</p>
+    <div class="auth-form auth-form--grid">
+      <div class="form-field" style="grid-column: span 2;">
+        <label>Certificate Type</label>
+        <div>{{ certificate_name }}</div>
       </div>
 
-      <div class="auth-form auth-form--grid">
-        <div class="form-field" style="grid-column: span 2;">
-          <label>Certificate Type</label>
-          <div>{{ certificate_name }}</div>
-        </div>
+      <div class="form-field">
+        <label>Appointment Date</label>
+        <div>{{ appointment.preferred_date }}</div>
+      </div>
 
-        <div class="form-field">
-          <label>Appointment Date</label>
-          <div>{{ appointment.appointment_date }}</div>
-        </div>
+      <div class="form-field">
+        <label>Appointment Time</label>
+        <div>{{ appointment.preferred_time }}</div>
+      </div>
 
-        <div class="form-field">
-          <label>Appointment Time</label>
-          <div>{{ appointment.appointment_time }}</div>
-        </div>
+      <div class="form-field" style="grid-column: span 2;">
+        <label>Purpose</label>
+        <div>{{ appointment.purpose }}</div>
+      </div>
 
-        <div class="form-field" style="grid-column: span 2;">
-          <label>Purpose</label>
-          <div>{{ appointment.purpose }}</div>
-        </div>
-
-        {% if barangay_clearance %}
-          <div class="form-field">
-            <label>Civil Status</label>
-            <div>{{ barangay_clearance.civil_status }}</div>
-          </div>
-          <div class="form-field">
-            <label>Citizenship</label>
-            <div>{{ barangay_clearance.citizenship }}</div>
-          </div>
-        {% endif %}
-
-        {% if indigency %}
-          <div class="form-field" style="grid-column: span 2;">
-            <label>Present Address</label>
-            <div>{{ indigency.present_address }}</div>
-          </div>
-          <div class="form-field">
-            <label>Contact Number</label>
-            <div>{{ indigency.contact_number }}</div>
-          </div>
-        {% endif %}
-
-        {% if community_tax_certificate %}
-          <div class="form-field" style="grid-column: span 2;">
-            <label>Present Address</label>
-            <div>{{ community_tax_certificate.address }}</div>
-          </div>
-          <div class="form-field">
-            <label>Sex</label>
-            <div>{{ community_tax_certificate.sex }}</div>
-          </div>
-          <div class="form-field">
-            <label>Civil Status</label>
-            <div>{{ community_tax_certificate.civil_status }}</div>
-          </div>
-          <div class="form-field">
-            <label>Citizenship</label>
-            <div>{{ community_tax_certificate.citizenship }}</div>
-          </div>
-          <div class="form-field" style="grid-column: span 2;">
-            <label>Occupation/Business</label>
-            <div>{{ community_tax_certificate.occupation_or_business }}</div>
-          </div>
-        {% endif %}
-
-        {% if solo_parent_certificate %}
-          <div class="form-field" style="grid-column: span 2;">
-            <label>Present Address</label>
-            <div>{{ solo_parent_certificate.present_address }}</div>
-          </div>
-          <div class="form-field">
-            <label>Contact Number</label>
-            <div>{{ solo_parent_certificate.contact_number }}</div>
-          </div>
-        {% endif %}
-
-        <div class="form-submit" style="grid-column: span 2;">
-          <div class="form-action" style="display:flex; gap:8px; flex-wrap:wrap;">
-            {% if certificate_name == "Barangay Clearance" %}
-              <a href="{% url 'barangay_clearance' %}" class="button-as-link"><button type="button" class="btn btn--secondary">Back to Booking</button></a>
-            {% elif certificate_name == "Certificate of Indigency" %}
-              <a href="{% url 'indigency_certificate' %}" class="button-as-link"><button type="button" class="btn btn--secondary">Back to Booking</button></a>
-            {% elif certificate_name == "Community Tax Certificate" %}
-              <a href="{% url 'comm_tax_cert' %}" class="button-as-link"><button type="button" class="btn btn--secondary">Back to Booking</button></a>
-            {% elif certificate_name == "Solo Parent Certificate" %}
-              <a href="{% url 'solo_parent_cert' %}" class="button-as-link"><button type="button" class="btn btn--secondary">Back to Booking</button></a>
-            {% endif %}
-            <a href="{% url 'appointments' %}" class="button-as-link"><button type="button" class="btn btn--warning">My Appointments</button></a>
-          </div>
+      <div class="form-submit" style="grid-column: span 2;">
+        <div class="form-action" style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="{% url 'certification' %}" class="button-as-link">
+            <button type="button" class="btn btn--secondary">Back to Booking</button>
+          </a>
+          <a href="{% url 'appointments' %}" class="button-as-link">
+            <button type="button" class="btn btn--warning">My Appointments</button>
+          </a>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 {% endblock %}

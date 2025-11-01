@@ -22,17 +22,21 @@
         </div>
         {% for appointment in appointments %}
             <div class="appointment_content">
-                <div>{{ appointment.certificate_type.name }}</div>
-                <div>{{ appointment.appointment_date }}</div>
-                <div>{{ appointment.appointment_time }}</div>
+                <div>{{ appointment.get_certificate_type_display }}</div>
+                <div>{{ appointment.preferred_date }}</div>
+                <div>{{ appointment.preferred_time }}</div>
                 <div>{{ appointment.purpose }}</div>
-                {% if appointment.is_completed %}
-                    <div class="status approved">Approved</div>
-                {% else %}
-                    <div class="status pending">Pending</div>
-                {% endif %}
+                {% if appointment.status == 'pending' %}
+                <div class="status pending">Pending</div>
+                    {% elif appointment.status == 'approved' %}
+                        <div class="status approved">Approved</div>
+                    {% elif appointment.status == 'completed' %}
+                        <div class="status completed">Completed</div>
+                    {% elif appointment.status == 'cancelled' %}
+                        <div class="status cancelled">Cancelled</div>
+                    {% endif %}
                 <div>
-                    <a href="{% url 'cancel_appointment' appointment.id %}" class="btn btn--danger">Cancel</a>
+                    <a href="{% url 'cancel_appointment' appointment.id %}" class="btn btn--danger {% if appointment.status == 'cancelled' %}disabled-link{% endif %}">Cancel</a>
                 </div>
             </div>
         {% endfor %}

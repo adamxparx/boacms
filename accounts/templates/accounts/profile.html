@@ -11,10 +11,16 @@
     <div class="message">{{ message }}</div>
     {% endfor %}
     
-    <div><input name="{{ form.first_name.name }}" value="{{ form.first_name.value }}" required/></div>
-    <div><input name="{{ form.middle_name.name }}" value="{{ form.middle_name.value }}"/></div>
-    <div><input name="{{ form.last_name.name }}" value="{{ form.last_name.value }}" required/></div>
-    <button type="submit">Update</button>
+    <div>First Name: <input name="{{ form.first_name.name }}" value="{{ user.resident.first_name }}" required/></div>
+    <div>Middle Name: <input name="{{ form.middle_name.name }}" value="{{ user.resident.middle_name }}"/></div>
+    <div>Last Name: <input name="{{ form.last_name.name }}" value="{{ user.resident.last_name }}" required/></div>
+    <div>Date of Birth: <input name="{{ form.date_of_birth.name }}" value="{{ user.resident.date_of_birth }}" required/></div>
+    <div>Sex: <input name="{{ form.sex.name }}" value="{{ user.resident.sex }}" required/></div>
+    <div>Address: <input name="{{ form.address.name }}" value="{{ user.resident.address }}" required/></div>
+    <div>Phone Number: <input name="{{ form.phone_number.name }}" value="{{ user.resident.phone_number }}" required/></div>
+    <div>Civil Status: <input name="{{ form.civil_status.name }}" value="{{ user.resident.civil_status }}" required/></div>
+    <div>Citizenship: <input name="{{ form.citizenship.name }}" value="{{ user.resident.citizenship }}" required/></div>
+    <div><button type="submit">Update</button></div>
 </form>
 
 {% endblock %}

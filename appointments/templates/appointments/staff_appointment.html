@@ -18,23 +18,28 @@
         </div>
         {% for appointment in appointments %}
             <div class="appointment_content">
-                <div>{{ appointment.user.get_full_name }}</div>
-                <div>{{ appointment.certificate_type.name }}</div>
-                <div>{{ appointment.appointment_date }}</div>
-                <div>{{ appointment.appointment_time }}</div>
+                <div>{{ appointment.resident.resident.first_name }} {{ appointment.resident.resident.last_name }}</div>
+                <div>{{ appointment.get_certificate_type_display }}</div>
+                <div>{{ appointment.preferred_date }}</div>
+                <div>{{ appointment.preferred_time }}</div>
                 <div>{{ appointment.purpose }}</div>
                 <div class="status">
                     <form method="post">
                         {% csrf_token %}
                         <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
-                        <button name="is_completed" value="True" type="submit">
-                            {% if appointment.is_completed %}
-                            <p class="approved">Approved</p>
-                            {% else %}
-                            <p class="pending">Approve</p>
-                            {% endif %}
-                        </button>
+
+                        {% if appointment.status == 'pending' %}
+                            <button type="submit" class="pending">Approve</button>
+                        {% elif appointment.status == 'approved' %}
+                            <button type="submit" class="approved">Approved</button>
+                        {% elif appointment.status == 'completed' %}
+                            <a class="completed" disabled>Completed</a>
+                        {% elif appointment.status == 'cancelled' %}
+                            <a class="cancelled" disabled>Cancelled</a>
+                        {% endif %}
                     </form>
+
+
                 </div>
             </div>
         {% endfor %}

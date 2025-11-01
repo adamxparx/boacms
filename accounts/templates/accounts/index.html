@@ -22,7 +22,9 @@
                 </div>
             </summary>
             <div class="dropdown-button">
+                {% if user.role == 'resident' %}
                 <a href="{% url 'profile' %}"><div>Profile</div></a>
+                {% endif %}
                 <button type="submit">Logout</button>
             </div>
         </select>
