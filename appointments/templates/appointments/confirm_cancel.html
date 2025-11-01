@@ -22,7 +22,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038a8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
                 <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
             </svg>
-            <span style="font-weight: 600; color: #1e40af;">{{ appointment.certificate_type.name }}</span>
+            <span style="font-weight: 600; color: #1e40af;">{{ appointment.get_certificate_type_display }}</span>
         </div>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0.75rem;
@@ -34,14 +34,14 @@
                     <line x1="8" y1="2" x2="8" y2="6"></line>
                     <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
-                <span style="color: #4b5563;">{{ appointment.appointment_date }}</span>
+                <span style="color: #4b5563;">{{ appointment.preferred_date }}</span>
             </div>
             <div style="display: flex; align-items: center;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span style="color: #4b5563;">{{ appointment.appointment_time }}</span>
+                <span style="color: #4b5563;">{{ appointment.preferred_time }}</span>
             </div>
         </div>
         

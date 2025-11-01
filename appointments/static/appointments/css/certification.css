@@ -267,3 +267,9 @@
   cursor: pointer;
   filter: brightness(0.95);
 }
+
+.disabled-link, .cancelled{
+  pointer-events: none;
+  opacity: 0.6;
+}
+

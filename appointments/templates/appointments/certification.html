@@ -5,76 +5,73 @@
 
 {% block content %}
 
-<div class="certification-block">
-  <div class="options tabs" role="tablist" aria-label="Certification Types">
-    <a href="{% url 'barangay_clearance' %}" class="tab" {% if request.resolver_match.url_name == 'barangay_clearance' %}aria-current="page"{% endif %}>Barangay Clearance</a>
-    <a href="{% url 'indigency_certificate' %}" class="tab" {% if request.resolver_match.url_name == 'indigency_certificate' %}aria-current="page"{% endif %}>Certificate of Indigency</a>
-    <a href="{% url 'comm_tax_cert' %}" class="tab" {% if request.resolver_match.url_name == 'comm_tax_cert' %}aria-current="page"{% endif %}>Community Tax Certificate (Cedula)</a>
-    <a href="{% url 'solo_parent_cert' %}" class="tab" {% if request.resolver_match.url_name == 'solo_parent_cert' %}aria-current="page"{% endif %}>Solo Parent Certificate</a>
-  </div>
-
   <div class="cert_content">
-    {% block cert_content %}{% endblock %}
+    {% block cert_content %}
+    <div class="auth-wrapper">
+      <div class="auth-card auth-card--wide">
+
+        <div class="auth-header">
+          <h2 class="auth-title">Book a Certificate</h2>
+          <p class="auth-subtitle">Provide your appointment details below.</p>
+        </div>
+
+        {% if form.non_field_errors %}
+            <div class="auth-alert auth-alert--error">
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post" class="auth-form auth-form--grid">
+          {% csrf_token %}
+
+          <div class="form-field">
+            <label for="{{ form.certificate_type.id_for_label }}">{{ form.certificate_type.label }}</label>
+            {{ form.certificate_type }}
+            {% for error in form.certificate_type.errors %}
+                <span class="field-error">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="form-field" style="grid-column: span 2;">
+            <label for="{{ form.purpose.id_for_label }}">{{ form.purpose.label }}</label>
+            {{ form.purpose }}
+            {% for error in form.purpose.errors %}
+                <span class="field-error">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="form-field">
+            <label for="{{ form.preferred_date.id_for_label }}">{{ form.preferred_date.label }}</label>
+            {{ form.preferred_date }}
+            {% for error in form.preferred_date.errors %}
+                <span class="field-error">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="form-field">
+            <label for="{{ form.preferred_time.id_for_label }}">{{ form.preferred_time.label }}</label>
+            {{ form.preferred_time }}
+            {% for error in form.preferred_time.errors %}
+                <span class="field-error">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="form-submit">
+            <div class="form-action">
+              <button type="submit">Book Appointment</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
   </div>
+  {% endblock %}
 </div>
 
-<script>
-  (function() {
-    const MIN = "09:00";
-    const MAX = "16:30";
-
-    function setConstraints() {
-      const timeInputs = document.querySelectorAll('input[type="time"], input[name$="appointment_time"]');
-      timeInputs.forEach(inp => {
-        try { inp.min = MIN; inp.max = MAX; } catch(e) {}
-        inp.addEventListener('change', () => validateTime(inp));
-        inp.addEventListener('input', () => inp.setCustomValidity(''));
-      });
-    }
-
-    function parseTime(val) {
-      if (!val) return null;
-      const parts = val.split(":").map(Number);
-      if (parts.length < 2) return null;
-      return parts[0] * 60 + parts[1];
-    }
-
-    function validateTime(input) {
-      const v = parseTime(input.value);
-      const min = parseTime(MIN);
-      const max = parseTime(MAX);
-      if (v == null) return true;
-      if (v < min || v > max) {
-        input.setCustomValidity(`Please select a time between ${MIN} and ${MAX}.`);
-        input.reportValidity();
-        return false;
-      } else {
-        input.setCustomValidity('');
-        return true;
-      }
-    }
-
-    function attachFormGuards() {
-      const forms = document.querySelectorAll('.auth-form, .cert');
-      forms.forEach(form => {
-        form.addEventListener('submit', (e) => {
-          const timeInputs = form.querySelectorAll('input[type="time"], input[name$="appointment_time"]');
-          let ok = true;
-          timeInputs.forEach(inp => { if (!validateTime(inp)) ok = false; });
-          if (!ok) {
-            e.preventDefault();
-          }
-        });
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      setConstraints();
-      attachFormGuards();
-    });
-  })();
-</script>
-
 <script src="{% static 'appointments/js/date_restriction.js' %}"></script>
+<script src="{% static 'appointments/js/time_restriction.js' %}"></script>
 
 {% endblock %}

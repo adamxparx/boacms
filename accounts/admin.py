@@ -1,16 +1,17 @@
+# admin.py
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
+from .models import CustomUser, Resident, BarangayStaff
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
-    list_display = ('email', 'first_name', 'last_name', 'is_staff', 'is_active', 'role')
-    list_filter = ('is_staff', 'is_active', 'role')
+    list_display = ('email', 'role', 'is_staff', 'is_active')
+    list_filter = ('role', 'is_staff', 'is_active')
+    search_fields = ('email',)
+    ordering = ('email',)
     fieldsets = (
         (None, {'fields': ('email', 'password', 'role')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'middle_name', 'date_of_birth', 'phone_number')}),
         ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')}),
-        ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (None, {
@@ -18,7 +19,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('email', 'password1', 'password2', 'role', 'is_staff', 'is_active')}
         ),
     )
-    search_fields = ('email', 'first_name', 'last_name')
-    ordering = ('email',)
 
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(Resident)
+admin.site.register(BarangayStaff)
