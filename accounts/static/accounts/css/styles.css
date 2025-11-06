@@ -133,6 +133,12 @@
     color: #86121d;
 }
 
+.auth-alert--success {
+    background-color: rgba(206, 17, 38, 0.12);
+    border-color: rgba(206, 17, 38, 0.32);
+    color: green;
+}
+
 .field-error {
     font-size: 0.85rem;
     color: var(--color-accent);

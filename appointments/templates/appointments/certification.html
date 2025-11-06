@@ -23,7 +23,7 @@
             </div>
         {% endif %}
 
-        <form method="post" class="auth-form auth-form--grid">
+        <form method="post" class="auth-form auth-form--grid" id="appointment-form">
           {% csrf_token %}
 
           <div class="form-field">
@@ -60,7 +60,7 @@
 
           <div class="form-submit">
             <div class="form-action">
-              <button type="submit">Book Appointment</button>
+              <button type="submit" id="submit-button">Book Appointment</button>
             </div>
           </div>
         </form>
@@ -73,5 +73,6 @@
 
 <script src="{% static 'appointments/js/date_restriction.js' %}"></script>
 <script src="{% static 'appointments/js/time_restriction.js' %}"></script>
+<script src="{% static 'appointments/js/disabled_booking_button.js' %}"></script>
 
 {% endblock %}
