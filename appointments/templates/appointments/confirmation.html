@@ -6,6 +6,15 @@
 {% block cert_content %}
 <div class="auth-wrapper">
   <div class="auth-card auth-card--wide">
+
+    {% if messages %}
+        <div class="auth-alert auth-alert--success">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <div class="auth-header">
       <h2 class="auth-title">{{ certificate_name }}</h2>
       <p class="auth-subtitle">Full Name: {{ appointment.resident.resident.first_name }} {{ appointment.resident.resident.last_name }}</p>
@@ -39,7 +48,7 @@
             <button type="button" class="btn btn--secondary">Back to Booking</button>
           </a>
           <a href="{% url 'appointments' %}" class="button-as-link">
-            <button type="button" class="btn btn--warning">My Appointments</button>
+            <button type="submit" class="btn btn--warning">My Appointments</button>
           </a>
         </div>
       </div>

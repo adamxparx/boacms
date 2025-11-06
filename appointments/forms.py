@@ -3,6 +3,7 @@ from .models import Appointment
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from datetime import time, timedelta
+from django.db import transaction, IntegrityError
 
 class AppointmentForm(forms.ModelForm):
     class Meta:
@@ -32,26 +33,24 @@ class AppointmentForm(forms.ModelForm):
         
         return preferred_time
     
-    def clean(self):
-        super().clean()
+    def save(self, commit=True):
 
-        preferred_date = self.cleaned_data.get('preferred_date')
-        preferred_time = self.cleaned_data.get('preferred_time')
+        with transaction.atomic():
+            instance = super().save(commit=False)
 
-        if preferred_date and preferred_time:
+            preferred_date = self.cleaned_data.get('preferred_date')
+            preferred_time = self.cleaned_data.get('preferred_time')
+
             buffer_minutes =  15
 
-            try:
-                start_datetime = timezone.make_aware(
-                    timezone.datetime.combine(preferred_date, preferred_time)
-                )
-            except ValueError:
-                raise ValidationError("Invalid date or time.")
-            
+            start_datetime = timezone.make_aware(
+                timezone.datetime.combine(preferred_date, preferred_time)
+            )
+                
             slot_start = start_datetime - timedelta(minutes=buffer_minutes)
             slot_end = start_datetime + timedelta(minutes=buffer_minutes)
 
-            conflicting_appointments = Appointment.objects.filter(
+            conflicting_appointments = Appointment.objects.select_for_update().filter(
                 preferred_date = preferred_date,
                 preferred_time__range = (slot_start.time(), slot_end.time())
             )
@@ -60,6 +59,6 @@ class AppointmentForm(forms.ModelForm):
                 conflicting_appointments = conflicting_appointments.exclude(pk=self.instance.pk)
 
             if conflicting_appointments.exists():
-                raise ValidationError("This slot is too close to an existing appointment. Please choose a different time.")
-            
-        return self.cleaned_data
+                raise IntegrityError("This slot is too close to an existing appointment. Please choose a different time.")
+                
+            return instance
