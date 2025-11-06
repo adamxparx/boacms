@@ -3,17 +3,22 @@ from django.contrib.auth.decorators import login_required
 from .forms import AppointmentForm
 from .models import Appointment
 from django.contrib import messages
+from django.db import transaction
 
 @login_required
 def create_appointment(request):
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
         if form.is_valid():
-            appointment = form.save(commit=False)
-            appointment.resident = request.user
-            appointment.save()
-            # messages.success(request, "Appointment booked successfully!")
-            return redirect('confirmation', appointment_id = appointment.id)
+            try:
+                with transaction.atomic():
+                    appointment = form.save(commit=False)
+                    appointment.resident = request.user
+                    appointment.save()
+                    # messages.success(request, "Appointment booked successfully!")
+                    return redirect('confirmation', appointment_id = appointment.id)
+            except Exception as e:
+                form.add_error(None, "There was an issue processing your booking. Please try again.")
     else:
         form = AppointmentForm()
 
