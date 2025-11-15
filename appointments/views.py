@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
 from .forms import AppointmentForm
 from .models import Appointment
 from django.contrib import messages
@@ -26,6 +27,13 @@ def create_appointment(request):
     }
 
     return render(request, 'appointments/certification.html', context)
+
+class RequirementsView(TemplateView):
+    template_name = 'appointments/requirements.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 @login_required
 def appointments(request):

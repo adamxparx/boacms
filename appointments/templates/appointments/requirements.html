@@ -1,0 +1,265 @@
+{% extends 'accounts/dashboard.html' %}
+{% load static %}
+
+{% block title %}Documentary Requirements | Barangay OACMS{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-card" style="max-width: 1000px; width: 90%; margin: 0 auto;">
+    <div class="auth-header">
+      <h2 class="auth-title">Documentary Requirements</h2>
+      <p class="auth-subtitle">Please prepare the following documents for your appointment</p>
+    </div>
+
+    <div class="requirements-container">
+      <div class="note">
+        <i class="fas fa-info-circle"></i>
+        <p>Please prepare the original and one (1) photocopy of the following documents to bring on your appointment day.</p>
+      </div>
+
+      <div class="requirement-card">
+        <div class="requirement-header">
+          <i class="fas fa-file-alt"></i>
+          <h3>1. Barangay Clearance</h3>
+        </div>
+        <ul class="requirement-list">
+          <li><i class="fas fa-check"></i> Valid Government-Issued ID (Passport, Driver's License, UMID, Voter's ID)</li>
+          <li><i class="fas fa-check"></i> Proof of Residency (Utility bill, rental contract, or ID with your address)</li>
+          <li><i class="fas fa-check"></i> Community Tax Certificate (Cedula)</li>
+        </ul>
+      </div>
+
+      <div class="requirement-card">
+        <div class="requirement-header">
+          <i class="fas fa-file-invoice"></i>
+          <h3>2. Certificate of Indigency</h3>
+        </div>
+        <ul class="requirement-list">
+          <li><i class="fas fa-check"></i> Valid Government-Issued ID</li>
+          <li><i class="fas fa-check"></i> Proof of Residency</li>
+          <li><i class="fas fa-check"></i> Proof of Income (or Affidavit of No Income)</li>
+        </ul>
+      </div>
+
+      <div class="requirement-card">
+        <div class="requirement-header">
+          <i class="fas fa-file-certificate"></i>
+          <h3>3. Community Tax Certificate (Cedula)</h3>
+        </div>
+        <ul class="requirement-list">
+          <li><i class="fas fa-check"></i> Valid Government-Issued ID</li>
+          <li><i class="fas fa-check"></i> Proof of Income (latest payslip, ITR, or certification of salary)</li>
+        </ul>
+      </div>
+
+      <div class="requirement-card">
+        <div class="requirement-header">
+          <i class="fas fa-user-friends"></i>
+          <h3>4. Solo Parent Certificate</h3>
+        </div>
+        <ul class="requirement-list">
+          <li><i class="fas fa-check"></i> Valid Government-Issued ID</li>
+          <li><i class="fas fa-check"></i> Birth Certificate/s of your child/children</li>
+          <li><i class="fas fa-check"></i> Proof of Solo Parent Status:
+            <ul class="nested-list">
+              <li><strong>For Widows/Widowers:</strong> Death Certificate of the spouse</li>
+              <li><strong>For Unmarried Parents:</strong> CENOMAR and Affidavit of Solo Parent</li>
+              <li><strong>For Separated/Annulled:</strong> Judicial decree of separation/annulment</li>
+              <li><strong>For Abandonment:</strong> Police report or Affidavit of Abandonment</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-submit" style="margin-top: 2rem;">
+        <a href="{% url 'certification' %}" class="back-button">
+          <i class="fas fa-arrow-left"></i> Back to Certification
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.requirements-container {
+  padding: 2rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.note {
+  background-color: #e8f5e9;
+  border-left: 4px solid #2e7d32;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.note i {
+  color: #2e7d32;
+  margin-top: 2px;
+}
+
+.requirement-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.requirement-header {
+  background-color: #2e7d32;
+  color: white;
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.requirement-header i {
+  font-size: 1.5rem;
+}
+
+.requirement-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.requirement-list {
+  padding: 1.5rem 2rem;
+  margin: 0;
+  list-style: none;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.requirement-list > li {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  line-height: 1.5;
+}
+
+.requirement-list i {
+  color: #2e7d32;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.nested-list {
+  margin-top: 0.5rem;
+  margin-left: 1.5rem;
+  list-style: disc;
+}
+
+.nested-list li {
+  margin-bottom: 0.5rem;
+  color: #424242;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #2e7d32;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.back-button:hover {
+  background-color: #1b5e20;
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 992px) {
+  .auth-card {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .requirement-card {
+    margin-bottom: 1.25rem;
+  }
+  
+  .requirement-header {
+    padding: 0.875rem 1.25rem;
+  }
+  
+  .requirement-list {
+    padding: 1.25rem;
+  }
+  
+  .nested-list {
+    margin-left: 1rem;
+  }
+}
+</style>
+{% endblock %}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>List of Documentary Requirements</h1>
+        
+        <div class="note">
+            Please prepare the original and one (1) photocopy of the following documents to bring on your appointment day.
+        </div>
+
+        <h2>1. Barangay Clearance</h2>
+        <ul>
+            <li>Valid Government-Issued ID: (e.g., Passport, Driver's License, UMID, Voter's ID)</li>
+            <li>Proof of Residency: (e.g., Utility bill, rental contract, or ID with your address)</li>
+            <li>Community Tax Certificate (Cedula): (Some barangays may require this)</li>
+        </ul>
+
+        <h2>2. Certificate of Indigency</h2>
+        <ul>
+            <li>Valid Government-Issued ID: (e.g., Passport, Driver's License, UMID, Voter's ID)</li>
+            <li>Proof of Residency: (e.g., Utility bill, rental contract)</li>
+            <li>Proof of Income (or lack thereof): (e.g., latest payslip showing low income, or an Affidavit of No Income)</li>
+        </ul>
+
+        <h2>3. Community Tax Certificate (Cedula)</h2>
+        <ul>
+            <li>Valid Government-Issued ID: (e.g., Passport, Driver's License, UMID, Voter's ID)</li>
+            <li>Proof of Income: (e.g., latest payslip, ITR, or certification of salary)</li>
+        </ul>
+
+        <h2>4. Solo Parent Certificate (Barangay Certification)</h2>
+        <ul>
+            <li>Valid Government-Issued ID: (e.g., Passport, Driver's License, UMID, Voter's ID)</li>
+            <li>Birth Certificate/s of your child/children.</li>
+            <li>Proof of Solo Parent Status (Bring the document that applies to you):
+                <ul>
+                    <li>For Widows/Widowers: Death Certificate of the spouse.</li>
+                    <li>For Unmarried Parents: Certificate of No Marriage (CENOMAR) and an Affidavit of Solo Parent.</li>
+                    <li>For Separated/Annulled: Judicial decree of legal separation or annulment.</li>
+                    <li>For Abandonment: Police report or Affidavit of Abandonment.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <a href="{% url 'certification' %}" class="back-button">← Back to Certification</a>
+    </div>
+</body>
+</html>
